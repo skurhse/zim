@@ -4,8 +4,8 @@
 
 declare -A h
 
-h[user.name]='drruruu'
-h[user.email]='drruruu@transprogrammer.org'
+h[user.name]='drruruu ☔'
+h[user.email]='hello@drruruu.dev'
 h[core.editor]='vim'
 h[merge.tool]='vimdiff'
 
