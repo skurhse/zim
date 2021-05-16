@@ -28,10 +28,7 @@ gh auth refresh
 
 tarball="$(gh release view --repo "$repo"|grep --perl-regexp "$pcre"|cut -f2)"
 
-if [[ -f "$tarball" ]] 
-then
-  rm "$tarball"
-fi
+[[ -f "$tarball" ]] && rm "$tarball"
 gh release download --repo "$repo" --pattern "$tarball"
 
 tar --extract --file "$tarball"
