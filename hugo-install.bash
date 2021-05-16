@@ -16,10 +16,11 @@ arch='64bit'
 
 pcre="hugo_[\d]+\.[\d]+\.[\d]+_$platform-$arch.tar.gz"
 
-(( EUID != 0 )) && {echo 'script requires root' 1>&2; exit 1}
+(( EUID != 0 )) && { echo 'script requires root' 1>&2; exit 1;}
 
 cd /tmp
 
+# TODO: gate with `gh auth status` <dru 2020-05-15>
 gh auth refresh
 
 tarball="$(gh release view --repo "$repo"|grep --perl-regexp "$pcre"|cut -f2)"
