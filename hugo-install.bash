@@ -16,11 +16,7 @@ arch='64bit'
 
 pcre="hugo_[\d]+\.[\d]+\.[\d]+_$platform-$arch.tar.gz"
 
-if (( EUID != 0 ))
-then
-  echo 'script requires root' 1>&2
-  exit 1
-fi
+(( EUID != 0 )) && {echo 'script requires root' 1>&2; exit 1}
 
 cd /tmp
 
