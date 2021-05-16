@@ -5,7 +5,6 @@ set -o errexit
 set -o noclobber
 set -o noglob
 set -o nounset
-set -o physical
 set -o pipefail
 set -o xtrace
 
