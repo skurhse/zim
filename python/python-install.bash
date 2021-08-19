@@ -9,7 +9,7 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-# SEE: https://devguide.python.org/setup/ <dru 2020-08-19>
+# SEE: https://github.com/python/cpython#build-instructions <dru 2020-08-19>
 
 sudo apt-get update
 
@@ -28,15 +28,12 @@ url='https://www.python.org/ftp/python/3.9.6/Python-3.9.6.tgz'
 tgz="${url##*/}"
 dir="${tgz%.*}"
 
-wget "$url"
+wget -O "$tgz" "$url"
 tar xf "$tgz"
 
 cd "$dir"
+# HACK: make fails without debug flag <dru 2020-08-19>
 ./configure --with-pydebug
-make -s -j2
-
-mv "/tmp/$dir" ~/python
-
-# SEE: https://docs.python.org/3/using/cmdline.html#environment-variables <dru 2020-08-19>
-# HACK: the make'd lib folder must be added to PYTHONPATH <dru 2020-08-19>
-# export PYTHONPATH=~/'python/Lib'
+make -j2
+# make test
+sudo make install
