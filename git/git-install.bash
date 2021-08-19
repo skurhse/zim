@@ -2,6 +2,8 @@
 
 # installs git from source
 
+# SEE: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git <dru 2020-08-19>
+
 set -o errexit
 set -o noclobber
 set -o noglob
