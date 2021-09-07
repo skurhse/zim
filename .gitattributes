@@ -1,0 +1,3 @@
+*.bash text=auto
+LICENSE text eol=crlf
+README.md text eol=crlf
