@@ -1,27 +1,59 @@
 #!/usr/bin/env bash
 
-# installs the pulumi cli from source
+# Manually installs the Pulumi CLI.
 
 set -o errexit
 set -o noclobber
-# set -o noglob
 set -o nounset
 set -o pipefail
-set -o xtrace
 
-# SEE: https://www.pulumi.com/docs/get-started/install/ <dru 2020-08-22>
+# SEE: https://www.pulumi.com/docs/get-started/install/ <dru 2020-09-11>
 
-declare -A pulumi
-pulumi['version']='3.11.0'
-pulumi['dir']='/tmp/pulumi/'
-pulumi['url']="https://get.pulumi.com/releases/sdk/pulumi-v${pulumi['version']}-linux-x64.tar.gz"
+ver='3.12.0'
+tmp='/tmp/pulumi/'
+bin='/usr/local/bin/'
+url="https://get.pulumi.com/releases/sdk/pulumi-v$ver-linux-x64.tar.gz"
 
-sudo apt-get update --quiet=2
-sudo apt-get install --quiet=2 wget
+sudo apt-get update
+sudo apt-get install --yes 'wget'
 
-[[ -d "${pulumi['dir']}" ]] && rm -rf "${pulumi['dir']}"
-mkdir --parents "${pulumi['dir']}"
+if [[ -d "$tmp" ]]
+then
+  rm \
+    --force \
+    --recursive \
+    --verbose \
+    -- "$tmp"
+fi
 
-wget -qO- "${pulumi['url']}" | tar xvz -C "${pulumi['dir']}" --strip-components 1
+mkdir \
+  --parents \
+  --verbose \
+  -- "$tmp"
 
-sudo mv "${pulumi['dir']}"* /usr/local/bin/
+wget \
+  --output-document='-' \
+  --verbose \
+  -- "$url" \
+| tar \
+  --extract \
+  --directory="$tmp" \
+  --gzip \
+  --strip-components=1 \
+  --verbose
+
+sudo rm \
+  --force \
+  --recursive \
+  --verbose \
+  -- "${bin}pulumi-"*
+
+sudo mv \
+  --verbose \
+  -- "${tmp}pulumi-"* "$bin"
+
+rm \
+  --force \
+  --recursive \
+  --verbose \
+  -- "$tmp"
