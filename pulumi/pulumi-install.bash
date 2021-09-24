@@ -48,7 +48,7 @@ sudo rm \
   --force \
   --recursive \
   --verbose \
-  -- "${bin}pulumi-"*
+  -- "${bin}pulumi-"* "${bin}pulumi"
 
 sudo mv \
   --verbose \
