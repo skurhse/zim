@@ -17,45 +17,18 @@ bin=/usr/local/bin/
 url=https://get.pulumi.com/releases/sdk/pulumi-v$ver-linux-x64.tar.gz
 
 sudo apt-get update
-sudo apt-get install --yes 'wget'
+sudo apt-get install --yes wget
 
-if [[ -d "$tmp" ]]
-then
-  rm \
-    --force \
-    --recursive \
-    --verbose \
-    -- "$tmp"
+if [[ -d $tmp ]]; then
+  rm --force --recursive --verbose -- $tmp
 fi
 
-mkdir \
-  --parents \
-  --verbose \
-  -- "$tmp"
+mkdir --parents --verbose -- $tmp
 
-wget \
-  --output-document='-' \
-  --verbose \
-  -- "$url" \
-| tar \
-  --extract \
-  --directory="$tmp" \
-  --gzip \
-  --strip-components=1 \
-  --verbose
+wget --output-document=- --verbose -- $url | tar --extract --directory=$tmp --gzip --strip-components=1 --verbose
 
-sudo rm \
-  --force \
-  --recursive \
-  --verbose \
-  -- "${bin}pulumi-"* "${bin}pulumi"
+sudo rm --force --recursive --verbose -- ${bin}pulumi-* ${bin}pulumi
 
-sudo mv \
-  --verbose \
-  -- "${tmp}pulumi-"* "${tmp}pulumi" "$bin"
+sudo mv --verbose -- ${tmp}pulumi-* ${tmp}pulumi $bin
 
-rm \
-  --force \
-  --recursive \
-  --verbose \
-  -- "$tmp"
+rm --force --recursive --verbose -- $tmp
