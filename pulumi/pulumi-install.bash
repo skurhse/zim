@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 
-# Manually installs the Pulumi CLI.
+# Installs the Pulumi CLI.
+# Usage: ./pulumi-install.bash
 
 set -o errexit
 set -o noclobber
 set -o nounset
 set -o pipefail
+set -o xtrace
 
 # SEE: https://www.pulumi.com/docs/get-started/install/ <dru 2020-09-11>
 
-ver='3.12.0'
-tmp='/tmp/pulumi/'
-bin='/usr/local/bin/'
-url="https://get.pulumi.com/releases/sdk/pulumi-v$ver-linux-x64.tar.gz"
+ver=3.13.0
+tmp=/tmp/pulumi/
+bin=/usr/local/bin/
+url=https://get.pulumi.com/releases/sdk/pulumi-v$ver-linux-x64.tar.gz
 
 sudo apt-get update
 sudo apt-get install --yes 'wget'
@@ -50,7 +52,7 @@ sudo rm \
 
 sudo mv \
   --verbose \
-  -- "${tmp}pulumi-"* "$bin"
+  -- "${tmp}pulumi-"* "${tmp}pulumi" "$bin"
 
 rm \
   --force \
