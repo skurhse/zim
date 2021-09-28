@@ -11,7 +11,7 @@ set -o xtrace
 
 # SEE: https://www.pulumi.com/docs/get-started/install/ <dru 2020-09-11>
 
-ver=3.13.0
+ver=3.13.2
 tmp=/tmp/pulumi/
 bin=/usr/local/bin/
 url=https://get.pulumi.com/releases/sdk/pulumi-v$ver-linux-x64.tar.gz
