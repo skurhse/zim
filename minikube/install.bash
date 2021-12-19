@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
 
-# installs the minikube debian package
+# REQ: Installs the minikube binary. <skr 2021-12-19>
 
-# REQ: https://minikube.sigs.k8s.io/docs/start/ <dru 2020-06-15>
+# SEE: https://minikube.sigs.k8s.io/docs/start/ <>
 
-pkg=minikube_latest_amd64.deb
-url=https://storage.googleapis.com/minikube/releases/latest/$pkg
+# USAGE: minikube/install.bash <>
+
+# ..............................................................................
+set +B -Cefuvxo pipefail
 
 cd /tmp
 
-curl -LO $url
+curl --location --remote-name \
+  https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 
-sudo dpkg -i $pkg 
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
 
-rm -v $pkg
+rm minikube-linux-amd64
