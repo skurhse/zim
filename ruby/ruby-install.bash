@@ -1,17 +1,7 @@
 #!/usr/bin/env bash
-# Installs ruby via ruby-install, configured with chruby
-  
-# TODO:
-# - Add ruby install
-# - Add chruby install
-# - Add uninstall functionality
-# - Improve logging
-# <dru 2020-05-06> 
-
-set -o xtrace
-set -o errexit
-set -o pipefail
-set -o verbose
+# REQ: Installs ruby via ruby-install. <skr 2022-01-11>
+# ..............................................................................
+set +B -Cefuvxo pipefail
 
 github_url='https://github.com/postmodern' 
 
