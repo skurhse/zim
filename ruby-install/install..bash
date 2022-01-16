@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-# REQ: Installs ruby via ruby-install. <skr 2022-01-11>
+# REQ: Installs ruby with ruby-install. <skr 2022-01-15>
+# SEE: https://github.com/postmodern/ruby-install#install <>
 # ..............................................................................
 set +B -Cefuvxo pipefail
 
 github_url='https://github.com/postmodern' 
 
-release_version='0.8.1'
+release_version='0.8.3'
 
 declare -A key
 key[url]="${github_url/github/raw.github}/postmodern.github.io/master/postmodern.asc"
