@@ -1,2 +1,2 @@
 # debian-scripts
-Debian 11 (bullseye)
+Debian 12 (bookworm/sid)
