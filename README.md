@@ -1,2 +1,2 @@
 # pd 📚🐛
-install scripts for debian 12 bookworm/sid
+debian install scripts
