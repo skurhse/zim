@@ -1,3 +1,5 @@
+# NOTE: To see a list of typical targets execute `make help` <skr 2022-07>
+
 CONTAINER ?= nervous_mclean
 
 .PHONY: ansible
