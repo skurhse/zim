@@ -1,5 +1,18 @@
 CONTAINER ?= nervous_mclean
 
+.PHONY: ansible
+ansible: pip
+	sudo pip3 install --system $@
+
+.PHONY: pip python3-pip
+pip: python3-pip
+python3-pip: apt-update
+	sudo apt-get install $@ --assume-yes
+
+.PHONY: apt-update
+apt-update:
+	sudo apt-get update
+
 .PHONY: container
 container:
 	docker container exec -it -- $(CONTAINER) /usr/bin/env bash -c ' \
