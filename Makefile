@@ -10,4 +10,8 @@ container:
 .PHONY: git-config
 git-config:
 	git config --local user.name 'Skurhse Eris Rage 🌆🌃🌌'
-	git config --local user.email 'hello@drruruu.dev'
+	git config --local user.email 'skurhse.eris@rage.codes'
+
+.PHONY: gh-login
+gh-login:
+	gh auth login --git-protocol https --web
