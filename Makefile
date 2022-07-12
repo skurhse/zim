@@ -15,4 +15,4 @@ git-config:
 .PHONY: gh-setup
 gh-setup:
 	gh auth status || gh auth login --git-protocol https --web
-	gh auth config setup-git
+	gh auth setup-git
