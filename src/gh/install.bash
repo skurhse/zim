@@ -13,7 +13,7 @@ realpath="$(realpath "$0")"
 dirname="$(dirname "$realpath")"
 cd "$dirname"
 
-source ../_lib/apt.bash
+source ../lib/apt.bash
 
 function main() {
   url='https://cli.github.com/packages/githubcli-archive-keyring.gpg'
