@@ -1,12 +1,41 @@
 #!/usr/bin/env bash
-# REQ: Installs the github cli apt repo and package. <>
-# ..............................................................................
-set +B -Cefuvxo pipefail
 
-# SEE: https://github.com/cli/cli/blob/trunk/docs/install_linux.md#debian-ubuntu-linux-raspberry-pi-os-apt <dru 2020-08-19> 
-curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo gpg --dearmor -o /usr/share/keyrings/githubcli-archive-keyring.gpg
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
-sudo apt update
-sudo apt-get install -y gh
+# REQ: Installs gh via apt. <skr 2022-07>
 
-gh version
+set +o braceexpand
+set -o errexit
+set -o noclobber
+set -o noglob
+set -o nounset
+set -o xtrace
+
+realpath="$(realpath "$0")"
+dirname="$(dirname "$realpath")"
+cd "$dirname"
+
+source ../_lib/apt.bash
+
+function main() {
+  url='https://cli.github.com/packages/githubcli-archive-keyring.gpg'
+  file='/usr/share/keyrings/githubcli-archive-keyring.gpg'
+  make_keyring
+
+  arch="$(dpkg --print-architecture)"
+  component='main'
+  distribution='stable'
+  file='/etc/apt/sources.list.d/github-cli.list'
+  signed_by="${keyring[file]}"
+  url='https://cli.github.com/packages'
+  make_list
+
+  download_keyring
+  install_list
+  
+  update_lists
+  install_packages gh
+
+  gh version
+}
+
+main "$@"
+
