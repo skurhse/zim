@@ -12,6 +12,7 @@ git-config:
 	git config --local user.name 'Skurhse Eris Rage 🌆🌃🌌'
 	git config --local user.email 'skurhse.eris@rage.codes'
 
-.PHONY: gh-login
-gh-login:
-	gh auth login --git-protocol https --web
+.PHONY: gh-setup
+gh-setup:
+	gh auth status || gh auth login --git-protocol https --web
+	gh auth config setup-git
