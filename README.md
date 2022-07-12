@@ -1,2 +1,2 @@
 # pd 📚🐛
-debian install scripts
+debian userscripts
