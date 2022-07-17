@@ -42,7 +42,7 @@ kudos:
 	$(Q)echo 
 	$(Q)echo 'In Memoriam $(MG)Ian Murdock$(RS)'
 	$(Q)echo 
-	$(Q)echo '  Father, Debian founder, manifesto writer, community friend.'
+	$(Q)echo '  Father, Debian founder, manifesto writer, leader, friend.'
 	$(Q)echo 
 
 DEBUG ?= no
