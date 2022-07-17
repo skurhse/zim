@@ -7,6 +7,7 @@
 
 BD := $(shell tput bold)
 BL := $(shell tput setaf 4)
+MG := $(shell tput setaf 5)
 CY := $(shell tput setaf 6) 
 RS := $(shell tput sgr0)
 
@@ -38,8 +39,11 @@ help:
 
 .PHONY: kudos
 kudos:
-	$(Q)echo 'In Memoriam $(MG)Ian Murdock$(RS):'
+	$(Q)echo 
+	$(Q)echo 'In Memoriam $(MG)Ian Murdock$(RS)'
+	$(Q)echo 
 	$(Q)echo '  Father, Debian founder, manifesto writer, community friend.'
+	$(Q)echo 
 
 DEBUG ?= no
 
