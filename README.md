@@ -1,5 +1,5 @@
 # im 📚
-- Userscripts for a brand-new kind of Linux distribution.
+- User scripts for a brand-new kind of Linux distribution.
 
 - [Appendix A. The Debian Manifesto](https://www.debian.org/doc/manuals/project-history/manifesto.en.html)
 
