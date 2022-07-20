@@ -2,8 +2,22 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
+# NOTE: For targets run `make help` <>
 
-# NOTE: For a list of, run `make help`. <skr>
+SHELL = /usr/bin/env bash
+
+ifeq (TRACE,yes)
+  V = v
+else
+  Q = @
+endif
+
+BRANCH_NAME := $(shell git name-rev --name-only HEAD)
+
+REMOTE_NAME := $(shell git config branch.$(BRANCH_NAME).remote)
+REMOTE_URL  := $(shell git config remote.$(REMOTE_NAME).url)
+
+REPO_NAME   := $(shell basename $(REMOTE_URL) .git)
 
 BD := $(shell tput bold)
 BL := $(shell tput setaf 4)
@@ -16,8 +30,15 @@ help:
 	$(Q)echo
 	$(Q)echo '$(BD)Main:$(RS)'
 	$(Q)echo
-	$(Q)echo '  $(CY)setup$(RS)      - $(BL)sets up im.$(RS)'
+	$(Q)echo '  $(CY)setup$(RS)      - $(BL)runs all setup targets.$(RS)'
+	$(Q)echo '  $(CY)install$(RS)    - $(BL)runs all install targets.$(RS)'
+	$(Q)echo '  $(CY)reset$(RS)      - $(BL)resets the im project.$(RS)'
 	$(Q)echo
+	$(Q)echo '$(BD)Setup:$(RS)'
+	$(Q)echo
+	$(Q)echo '  $(CY)git-config      - $(BL)sets up the local git config.$(RS)'
+	$(Q)echo '  $(CY)gh-auth         - $(BL)sets up the local git config.$(RS)'
+	$(Q)echo 
 	$(Q)echo '$(BD)Install:$(RS)'
 	$(Q)echo
 	$(Q)echo '  $(CY)ansible$(RS)    - $(BL)installs ansible with pip.$(RS)'
@@ -26,16 +47,10 @@ help:
 	$(Q)echo '$(BD)Utility:$(RS)'
 	$(Q)echo
 	$(Q)echo '  $(CY)shell$(RS)      - $(BL)shells into a docker dev env.$(RS)'
-	$(Q)echo
-	$(Q)echo '$(BD)Setup:$(RS)'
-	$(Q)echo
-	$(Q)echo '  $(CY)user.name$(RS)  - $(BL)sets the local git user.$(RS)'
-	$(Q)echo '  $(CY)user.email$(RS) - $(BL)sets the local git email.$(RS)'
-	$(Q)echo 
-	$(Q)echo '$(BD)Miscellaneous:$(RS)'
-	$(Q)echo 
 	$(Q)echo '  $(CY)kudos$(RS)      - $(BL)pays respects.$(RS)'
 	$(Q)echo 
+
+# TODOC: Add help info for xintermediate targets. <skr>
 
 .PHONY: kudos
 kudos:
@@ -45,41 +60,27 @@ kudos:
 	$(Q)echo '  Father, Debian founder, manifesto writer, leader, friend.'
 	$(Q)echo 
 
-DEBUG ?= no
+.PHONY: setup
+setup: git-config gh-auth
 
-ifeq (DEBUG,yes)
-  Q =
-else
-  Q = @
-endif
+.PHONY: git-config
+git: user.name user.email
+
+user.name user.email: FORCE
+	$(if $(shell $(call git-cfg,$@)),,$(call git-cfg,$@,$(shell $(call prompt,$@:))))
+
+define git-cfg
+git config --local -- $(1) $(2)
+endef
 
 define prompt
-	read -p $(1): $(subst .,_,$(1))
+read -p $(1) p; echo $${p@Q}
 endef
 
-define git-config
-  git config --local $(1) $$$(subst .,_,$(2))
-endef
-
-.PHONY: user.name
-user.name:
-	$(Q)$(call prompt,$@); \
-	$(call git-config,$@)
-
-.PHONY: user.email
-user.email:
-
-setup : set-user set-email
-
-USERNAME ?= 'Skurhse Rage 🌆🌃🌌'
-
-GIT_USER_NAME ?= $(call get-git-user-name)
-
-GIT_EMAIL_ADDRESS ?= $(call get-git-email-address)
-
-CONTAINER ?= nervous_mclean
-
-
+.PHONY: gh-auth
+gh-auth:
+	gh auth status || gh auth login --git-protocol https --web
+	gh auth setup-git
 
 .PHONY: ansible
 ansible: pip
@@ -94,19 +95,24 @@ python3-pip: apt-update
 apt-update:
 	sudo apt-get update
 
-.PHONY: container
-container:
-	docker container exec -it -- $(CONTAINER) /usr/bin/env bash -c ' \
-	  export REMOTE_CONTAINERS_IPC=$$( \
-	    find /tmp -name '\''vscode-remote-containers-ipc*'\'' -type s \
-	      -echo "%T@ %p\n" | sort -n | cut -d " " -f 2- | tail -n 1);$$SHELL -l'
+.PHONY: shell
+shell:
+	$(Q)docker container exec -it -- $(REPO_NAME) \
+	/usr/bin/env bash -c 'export REMOTE_CONTAINERS_IPC=\
+	$$(find /tmp -name '\''vscode-remote-containers-ipc*'\'' \
+	-type s -printf "%T@ %p\n" | sort -n | cut -d " " -f 2- | tail -n 1);\
+	$$SHELL -l'
 
-.PHONY: git-config
-git-config:
-	git config --local user.name 'Skurhse Eris Rage 🌆🌃🌌'
-	git config --local user.email 'skurhse.eris@rage.codes'
+.PHONY: reset
+reset:
+	$(Q)git config --local --remove-section user 2>/dev/null || [[ $$? -eq 128 ]]
 
-.PHONY: gh-setup
-gh-setup:
-	gh auth status || gh auth login --git-protocol https --web
-	gh auth setup-git
+.PHONY: shell
+shell:
+	$(Q)docker container exec -it -- $(REPO_NAME) \
+	/usr/bin/env bash -c 'export REMOTE_CONTAINERS_IPC=\
+	$$(find /tmp -name '\''vscode-remote-containers-ipc*'\'' \
+	-type s -printf "%T@ %p\n" | sort -n | cut -d " " -f 2- | tail -n 1);\
+	$$SHELL -l'
+
+FORCE:
