@@ -36,8 +36,8 @@ help:
 	$(Q)echo
 	$(Q)echo '$(BD)Setup:$(RS)'
 	$(Q)echo
-	$(Q)echo '  $(CY)git-config      - $(BL)sets up the local git config.$(RS)'
-	$(Q)echo '  $(CY)gh-auth         - $(BL)sets up the local git config.$(RS)'
+	$(Q)echo '  $(CY)git-config$(RS) - $(BL)sets up the local git config.$(RS)'
+	$(Q)echo '  $(CY)gh-auth$(RS)    - $(BL)sets up github authentication.$(RS)'
 	$(Q)echo 
 	$(Q)echo '$(BD)Install:$(RS)'
 	$(Q)echo
@@ -104,15 +104,13 @@ shell:
 	$$SHELL -l'
 
 .PHONY: reset
-reset:
+reset: git-reset gh-logout
+
+.PHONY: git-reset
+git-reset:
 	$(Q)git config --local --remove-section user 2>/dev/null || [[ $$? -eq 128 ]]
 
-.PHONY: shell
-shell:
-	$(Q)docker container exec -it -- $(REPO_NAME) \
-	/usr/bin/env bash -c 'export REMOTE_CONTAINERS_IPC=\
-	$$(find /tmp -name '\''vscode-remote-containers-ipc*'\'' \
-	-type s -printf "%T@ %p\n" | sort -n | cut -d " " -f 2- | tail -n 1);\
-	$$SHELL -l'
+gh-logout:
+	$(Q)gh auth logout
 
 FORCE:
