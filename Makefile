@@ -31,26 +31,23 @@ help:
 	$(Q)echo '$(BD)Main:$(RS)'
 	$(Q)echo
 	$(Q)echo '  $(CY)setup$(RS)      - $(BL)runs all setup targets.$(RS)'
-	$(Q)echo '  $(CY)install$(RS)    - $(BL)runs all install targets.$(RS)'
 	$(Q)echo '  $(CY)reset$(RS)      - $(BL)resets the im project.$(RS)'
+	$(Q)echo
+	$(Q)echo '$(BD)Install:$(RS)'
+	$(Q)echo
+	$(Q)echo '  $(CY)ansible$(RS)    - $(BL)installs ansible with pip.$(RS)'
+	$(Q)echo '  $(CY)docker$(RS)     - $(BL)installs docker with homebrew.$(RS)'
 	$(Q)echo
 	$(Q)echo '$(BD)Setup:$(RS)'
 	$(Q)echo
 	$(Q)echo '  $(CY)git-config$(RS) - $(BL)sets up the local git config.$(RS)'
 	$(Q)echo '  $(CY)gh-auth$(RS)    - $(BL)sets up github authentication.$(RS)'
 	$(Q)echo 
-	$(Q)echo '$(BD)Install:$(RS)'
-	$(Q)echo
-	$(Q)echo '  $(CY)ansible$(RS)    - $(BL)installs ansible with pip.$(RS)'
-	$(Q)echo '  $(CY)docker$(RS)     - $(BL)installs docker with homebrew.$(RS)'
-	$(Q)echo
 	$(Q)echo '$(BD)Utility:$(RS)'
 	$(Q)echo
 	$(Q)echo '  $(CY)shell$(RS)      - $(BL)shells into a docker dev env.$(RS)'
 	$(Q)echo '  $(CY)kudos$(RS)      - $(BL)pays respects.$(RS)'
 	$(Q)echo 
-
-# TODOC: Add help info for xintermediate targets. <skr>
 
 .PHONY: kudos
 kudos:
@@ -63,8 +60,15 @@ kudos:
 .PHONY: setup
 setup: git-config gh-auth
 
+.PHONY: reset
+reset: git-reset gh-logout
+
 .PHONY: git-config
-git: user.name user.email
+git-config: user.name user.email
+
+.PHONY: git-reset
+git-reset:
+	$(Q)git config --local --remove-section user 2>/dev/null || [[ $$? -eq 128 ]]
 
 user.name user.email: FORCE
 	$(if $(shell $(call git-cfg,$@)),,$(call git-cfg,$@,$(shell $(call prompt,$@:))))
@@ -103,12 +107,7 @@ shell:
 	-type s -printf "%T@ %p\n" | sort -n | cut -d " " -f 2- | tail -n 1);\
 	$$SHELL -l'
 
-.PHONY: reset
-reset: git-reset gh-logout
 
-.PHONY: git-reset
-git-reset:
-	$(Q)git config --local --remove-section user 2>/dev/null || [[ $$? -eq 128 ]]
 
 gh-logout:
 	$(Q)gh auth logout
