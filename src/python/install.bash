@@ -1,39 +1,44 @@
 #!/usr/bin/env bash
 
-# installs a python source release
+# REQ: Installs CPython from source with all optional modules. <skr 2022-07>
 
+# SEE: https://github.com/python/cpython#build-instructions <>
+
+set +o braceexpand
 set -o errexit
 set -o noclobber
 set -o noglob
 set -o nounset
 set -o pipefail
-set -o xtrace
 
-# SEE: https://github.com/python/cpython#build-instructions <dru 2020-08-19>
+set -o xtrace
 
 py_version='3.9.6'
 py_method='wget' # 'git'
 py_dir='/tmp/python/'
 
-# CAVEAT: defines *additional* build dependencies <dru 2020-08-19>
-declare -a py_deps
-py_deps+=('build-essential')
-py_deps+=('gdb')
-py_deps+=('git')
-py_deps+=('lcov')
-py_deps+=('libbz2-dev')
-py_deps+=('libffi-dev')
-py_deps+=('libgdbm-dev')
-py_deps+=('liblzma-dev')
-py_deps+=('libncurses5-dev')
-py_deps+=('libreadline6-dev')
-py_deps+=('libsqlite3-dev')
-py_deps+=('libssl-dev')
-py_deps+=('lzma')
-py_deps+=('lzma-dev')
-py_deps+=('tk-dev')
-py_deps+=('uuid-dev')
-py_deps+=('zlib1g-dev')
+py_deps=(
+  'build-essential'
+  'ccache'
+  'gdb'
+  'lcov'
+  'libb2-dev'
+  'libbz2-dev'
+  'libffi-dev'
+  'libgdm-dev'
+  'libgdbm-compat-dev'
+  'liblzma-dev'
+  'libncurses5-dev'
+  'libreadline6-dev'
+  'libsqlite3-dev'
+  'libssl-dev'
+  'pkg-cconfig'
+  'lzma'
+  'lzma-dev'
+  'tk-dev'
+  'uuid-dev'
+  'zlib1g-dev'
+)
 
 declare -a script_deps
 case "$py_method" in

@@ -37,6 +37,7 @@ help:
 	$(Q)echo
 	$(Q)echo '  $(CY)ansible$(RS)    - $(BL)installs ansible with pip.$(RS)'
 	$(Q)echo '  $(CY)docker$(RS)     - $(BL)installs docker with homebrew.$(RS)'
+	$(Q)echo '  $(CY)python$(RS)     - $(BL)installs python from source.$(RS)'
 	$(Q)echo
 	$(Q)echo '$(BD)Setup:$(RS)'
 	$(Q)echo
@@ -86,6 +87,8 @@ gh-auth:
 	gh auth status || gh auth login --git-protocol https --web
 	gh auth setup-git
 
+# TODO: Clean up. <skr>
+
 .PHONY: ansible
 ansible: pip
 	sudo pip3 install --system $@
@@ -94,6 +97,14 @@ ansible: pip
 pip: python3-pip
 python3-pip: apt-update
 	sudo apt-get install $@ --assume-yes
+
+.PHONY: python
+python:
+	$(call install,$@)
+
+define install
+	src/$(1)/install.bash
+endef
 
 .PHONY: apt-update
 apt-update:
@@ -106,8 +117,6 @@ shell:
 	$$(find /tmp -name '\''vscode-remote-containers-ipc*'\'' \
 	-type s -printf "%T@ %p\n" | sort -n | cut -d " " -f 2- | tail -n 1);\
 	$$SHELL -l'
-
-
 
 gh-logout:
 	$(Q)gh auth logout
