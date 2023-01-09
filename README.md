@@ -2,7 +2,16 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
-# im 📚 (pre-alpha)
-- A brand-new kind of Linux distribution.
+# zim 📚
+- A userscript library for a brand-new kind of Linux distribution.
 
-- For targets run `make help`
+
+## bootstrap
+```bash
+sudo apt update
+sudo apt install git -y
+mkdir -p ~/src
+git clone https://github.com/skurhse/zim.git $_/zim
+cd $_
+make help
+```
