@@ -6,7 +6,7 @@
 - A userscript library for a brand-new kind of Linux distribution.
 
 
-## bootstrap
+## installation
 ```bash
 sudo apt update
 sudo apt install git -y
