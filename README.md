@@ -9,7 +9,7 @@
 ## installation
 ```bash
 sudo apt update
-sudo apt install git -y
+sudo apt install make git -y
 mkdir -p ~/src
 git clone https://github.com/skurhse/zim.git $_/zim
 cd $_
