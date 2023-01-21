@@ -1,19 +1,20 @@
 #!/usr/bin/env bash
 
-# REQ: Installs gh via apt. <skr 2022-07>
+# REQ: Installs the GitHub CLI via APT. <skr 2023-01-21>
 
 set +o braceexpand
+
 set -o errexit
 set -o noclobber
 set -o noglob
 set -o nounset
 set -o xtrace
 
-realpath="$(realpath "$0")"
-dirname="$(dirname "$realpath")"
+realpath=$(realpath "${BASH_SOURCE[0]}")
+dirname=$(dirname "$realpath")
 cd "$dirname"
 
-source ../lib/apt.bash
+source ../../lib/apt.bash
 
 function main() {
   url='https://cli.github.com/packages/githubcli-archive-keyring.gpg'
@@ -30,7 +31,7 @@ function main() {
 
   download_keyring
   install_list
-  
+
   update_lists
   install_packages gh
 
