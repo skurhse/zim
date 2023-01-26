@@ -2,13 +2,7 @@
 
 # installs neovim stable. <skr 2023-01-25>
 
-set +o braceexpand
-set -o errexit
-set -o noclobber
-set -o noglob
-set -o nounset
-set -o pipefail
-set -o xtrace
+set +B -Cefuxo pipefail
 
 repo=neovim/neovim
 dir=/tmp/$repo

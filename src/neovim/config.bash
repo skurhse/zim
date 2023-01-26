@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
 
-# installs init.lua. <skr 2023-01-25>
+set +B -Cefuxo pipefail
 
-set +o braceexpand
-set -o errexit
-set -o noclobber
-set -o noglob
-set -o nounset
-set -o pipefail
-set -o xtrace
+# installs init.lua. <skr 2023-01-25>
 
 url=https://gist.github.com/skurhse/3071390d8a63efdd6e90542ac8c6115d
 file=init.lua

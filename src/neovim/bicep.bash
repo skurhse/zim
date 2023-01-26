@@ -1,14 +1,8 @@
 #!/usr/bin/env bash
 
-# installs the bicep language server. <skr 2023-01-25>
+set +B -Cefuxvo pipefail
 
-set +o braceexpand
-set -o errexit
-set -o noclobber
-set -o noglob
-set -o nounset
-set -o pipefail
-set -o xtrace
+# installs the bicep language server. <skr 2023-01-25>
 
 repo=Azure/bicep
 asset=bicep-langserver.zip
