@@ -13,15 +13,17 @@ set -o xtrace
 repo=neovim/neovim
 dir=/tmp/$repo
 tag=stable
-patterns=(*.deb *.deb.sha256sum)
 
-rm -rf $dir
-mkdir -p $dir
-gh release download $tag \
-  --repo    $repo        \
-  --dir     $dir         \
-  $(for pattern in ${patterns[@]}; do echo " --pattern $pattern"; done)
+rm -rf $dir; mkdir -p $dir
+
+gh release download $tag    \
+  --repo    $repo           \
+  --dir     $dir            \
+  --pattern *.deb           \
+  --pattern *.deb.sha256sum
 
 set +o noglob
+
 cd $dir && sha256sum --check *.deb.sha256sum
+
 sudo apt-get install --assume-yes $dir/*.deb
