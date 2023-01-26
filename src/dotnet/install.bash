@@ -13,7 +13,7 @@ set -o pipefail
 set -o xtrace
 
 repo=microsoft-debian-bullseye-prod
-package=dotnet-sdk-7.0
+packages=(dotnet-sdk-6.0 dotnet-sdk-7.0)
 
 keyserver=https://packages.microsoft.com/keys/microsoft.asc
 keyring=/usr/share/keyrings/microsoft.gpg
@@ -41,6 +41,6 @@ sudo bash -c "echo ${str@Q} > $list"
 cat $list
 
 sudo apt-get update
-sudo apt-get --assume-yes install $package
+sudo apt-get --assume-yes install ${packages[@]}
 
 dotnet --version
