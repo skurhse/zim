@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
-# installs the azure cli with apt
+# installs the azure cli from the microsoft apt repository. <skr 2023-01-25>
 
+# https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux <>
+
+set +o braceexpand
 set -o errexit
 set -o noclobber
 set -o noglob
@@ -9,38 +12,36 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-# SEE: https://docs.microsoft.com/e6n-us/cli/azure/install-azure-cli-linux?pivots=apt#option-2-step-by-step-installation-instructions <dru 2021-08-26>
+keyserver=https://packages.microsoft.com/keys/microsoft.asc
+keyring=/usr/share/keyrings/microsoft.gpg
+fingerprint=0xEB3E94ADBE1229CF
 
-declare -A key
-key['server']='https://packages.microsoft.com/keys/microsoft.asc'
-key['ring']='/usr/share/keyrings/microsoft.gpg' 
-key['fingerprint']=''
+repo=https://packages.microsoft.com/repos/azure-cli/
+arch=amd64
+list=/etc/apt/sources.list.d/microsoft.list
 
-declare -A repo
-repo['url']='https://packages.microsoft.com/repos/azure-cli/'
-repo['arch']='amd64'
+sudo apt-get update
+sudo apt-get install --assume-yes curl gpg lsb-release
 
-# TODO: determine what's actually necessary with gpg implementation. <dru 2021-08-26>
-declare -a deps
-deps+=('apt-transport-https')
-deps+=('ca-certificates')
-deps+=('curl')
-deps+=('gnupg')
-deps+=('lsb-release')
-# deps+=('software-properties-common')
+gpg --show-keys --keyid-format 0xLONG <(curl $keyserver)
 
-sudo apt-get update --quiet=2
-sudo apt-get install --quiet=2 "${deps[@]}"
+sudo gpg --no-default-keyring               \
+	 --keyring             $keyring     \
+	 --keyserver           $keyserver   \
+         --recv-keys           $fingerprint
 
-sudo gpg \
-  --no-default-keyring \
-  --keyring "${key['ring']}" \
-  --keyserver "${key['server']}" \
-  --recv-keys
+sudo gpg --no-default-keyring          \
+	 --keyring            $keyring \
+	 --keyid-format       0xLONG   \
+	 --list-keys
 
-# CAVEAT: apt-add-repository does not support signed-by. <dru 2021-08-26>
-sudo bash -c "echo 'deb [arch=${repo['arch']} signed-by=${key['ring']}] ${repo['url']} $(lsb_release -cs) stable' >> /etc/apt/sources.list"
+str="deb [arch=$arch signed-by=$keyring] $repo $(lsb_release -cs) main"
 
-# SEE: https://docs.microsoft.com/en-us/azure/aks/csi-secrets-store-driver#install-the-aks-preview-cli-extension <dru 2021-08-26>
-az extension add --name aks-preview
-az extension update --name aks-preview
+sudo bash -c "echo ${str@Q} > $list"
+
+cat $list
+
+sudo apt-get update
+sudo apt-get --assume-yes install azure-cli
+
+az --version
