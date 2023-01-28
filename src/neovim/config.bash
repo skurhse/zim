@@ -8,7 +8,7 @@ url=https://gist.github.com/skurhse/3071390d8a63efdd6e90542ac8c6115d
 file=init.lua
 dir=/tmp/${url##*/}/
 src=$dir/$file
-trg=~/.config/neovim/
+trg=~/.config/nvim/
 
 rm -rf $dir
 gh gist clone $url $dir
