@@ -15,4 +15,4 @@ set -o pipefail
 set -o xtrace
 
 npm --version
-npm i -g vscode-langservers-extracted
+sudo npm install --global vscode-langservers-extracted
