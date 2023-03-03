@@ -4,14 +4,3 @@
 
 # zim 📚
 - A userscript library for a brand-new kind of Linux distribution.
-
-
-## installation
-```bash
-sudo apt update
-sudo apt install make git -y
-mkdir -p ~/src
-git clone https://github.com/skurhse/zim.git $_/zim
-cd $_
-make help
-```
