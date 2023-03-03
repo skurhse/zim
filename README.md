@@ -3,6 +3,8 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 # zim 📚
-- A userscript library for a brand-new kind of Linux distribution.
+A userscript library for a brand-new kind of Linux distribution.
+
+## user notes
 - Annotated with [PEP 350](https://peps.python.org/pep-0350/).
 - 
