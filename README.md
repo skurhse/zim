@@ -6,5 +6,6 @@
 A userscript library for a brand-new kind of Linux distribution.
 
 ## User Notes
+- Assumes bash version 5.1 or greater.
+- Versions are pinned by-design.
 - Annotated with [PEP 350](https://peps.python.org/pep-0350/).
-- 
