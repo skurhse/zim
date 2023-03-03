@@ -9,5 +9,5 @@ A userscript library for a brand-new kind of Linux distribution.
 - Targets [Debian “bullseye”](https://www.debian.org/releases/bullseye/).
 - Install versions are pinned *by-design*.
 - Script dependency automation is not included *by-design*.
-- Customizations are separated into their own script files.
+- Customizations are separated into individual script files.
 - Annotated with [PEP 350](https://peps.python.org/pep-0350/).
