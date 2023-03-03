@@ -3,7 +3,7 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 # zim 📚
-A [bash](https://www.gnu.org/software/bash/manual/html_node/index.html) library for a brand-new kind of Linux distribution.
+A [Bash](https://www.gnu.org/software/bash/manual/html_node/index.html) userscript library for a brand-new kind of Linux distribution.
 
 ## Mantra
 `zim` targets [Debian “bullseye”](https://www.debian.org/releases/bullseye/).
