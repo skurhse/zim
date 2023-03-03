@@ -4,3 +4,5 @@
 
 # zim 📚
 - A userscript library for a brand-new kind of Linux distribution.
+- Annotated with [PEP 350](https://peps.python.org/pep-0350/).
+- 
