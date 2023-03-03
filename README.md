@@ -7,11 +7,11 @@ A userscript library for a brand-new kind of Linux distribution.
 
 ## Mantras
 - `zim` targets [Debian “bullseye”](https://www.debian.org/releases/bullseye/).
--       pins installation version.
--       only validates script dependencies, it does not attempt to resolve them.
--       isolates component operations into separate script files.
--       is annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags.
--       attempts to have fun.
+-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pins installation version.
+-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;only validates script dependencies, it does not attempt to resolve them.
+-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isolates component operations into separate script files.
+-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags.
+-  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attempts to have be careful.
 
 ## Kudos
 🕊️ *In Memoriam [Ian Murdock](https://en.wikipedia.org/wiki/Ian_Murdock)*
