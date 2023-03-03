@@ -16,7 +16,7 @@ A userscript library for a brand-new kind of Linux distribution.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attempts to have be careful.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attempts to be careful.
 
 ## Kudos
 🕊️ *In Memoriam [Ian Murdock](https://en.wikipedia.org/wiki/Ian_Murdock)*
