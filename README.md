@@ -6,6 +6,6 @@
 A userscript library for a brand-new kind of Linux distribution.
 
 ## User Mantra
-- Targets bash version `~> 5.1.4` and debian `bullseye`.
+- Targets debian `11 (bullseye)`.
 - Install versions are pinned *by-design*.
 - Annotated with [PEP 350](https://peps.python.org/pep-0350/).
