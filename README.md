@@ -13,4 +13,4 @@ A userscript library for a brand-new kind of Linux distribution.
 - Annotated with [PEP 350](https://peps.python.org/pep-0350/).
 
 # Kudos
-*In Memoriam [Ian Murdock](https://en.wikipedia.org/wiki/Ian_Murdock)*
+🕊️ *In Memoriam [Ian Murdock](https://en.wikipedia.org/wiki/Ian_Murdock)*
