@@ -8,7 +8,7 @@ A userscript library for a brand-new kind of Linux distribution.
 ## Mantras
 `zim` targets [Debian “bullseye”](https://www.debian.org/releases/bullseye/).
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pins installation version.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pins installation versions.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;only validates script dependencies, it does not attempt to resolve them.
 
