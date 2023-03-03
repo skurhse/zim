@@ -5,7 +5,7 @@
 # zim 📚
 A userscript library for a brand-new kind of Linux distribution.
 
-## Mantras
+## Mantra
 `zim` targets [Debian “bullseye”](https://www.debian.org/releases/bullseye/).
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pins installation versions.
