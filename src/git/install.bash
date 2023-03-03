@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-# installs git from source
+# REQ: Installs git from source. <skr 2023-03-02>
 
-# SEE: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git <dru 2020-08-19>
+# SEE: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git <skr 2020-08-19>
 
+set +o braceexpand
 set -o errexit
 set -o noclobber
 set -o noglob
@@ -11,7 +12,8 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-url='https://www.kernel.org/pub/software/scm/git/git-2.32.0.tar.gz'
+version='2.39.2'
+url="https://www.kernel.org/pub/software/scm/git/git-${version}.tar.gz"
 tar="${url##*/}"
 dir="${tar%.tar.gz}"
 
