@@ -7,7 +7,7 @@ A userscript library for a brand-new kind of Linux distribution.
 
 ## User Mantra
 - Targets [Debian “bullseye”](https://www.debian.org/releases/bullseye/).
-- Installation versions are pinned *by-design*.
+- Installation versions are pinned by-design.
 - Script dependencies are only validated.
 - Customizations are separated into individual script files.
 - Annotated with [PEP 350](https://peps.python.org/pep-0350/).
