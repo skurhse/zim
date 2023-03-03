@@ -5,7 +5,7 @@
 # zim 📚
 A userscript library for a brand-new kind of Linux distribution.
 
-## User Notes
+## User Mantra
 - Assumes `bash` version `5.1.4` or greater.
 - Install versions are pinned *by-design*.
 - Annotated with [PEP 350](https://peps.python.org/pep-0350/).
