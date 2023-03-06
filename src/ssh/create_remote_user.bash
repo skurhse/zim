@@ -61,8 +61,12 @@ fi
 
 ssh -i "$ZIM_KEY" "${ZIM_USER}@${ZIM_HOST}" <<<$remote_init_script
 
-rsync --no-owner --no-group --no-perms \
-  --chmod 'ugo=rwX' \
+rsync \
+  --ignore-existing \
+  --no-owner \
+  --no-group \
   --chown "$ZIM_TARGET_USER:$ZIM_TARGET_USER" \
+  --no-perms \
+  --chmod 'ugo=rwX' \
   --rsh   "ssh -i $ZIM_KEY" \
 -- "$ZIM_TARGET_PUBKEY" "$ZIM_USER@$ZIM_HOST:/home/$ZIM_TARGET_USER/.ssh/authorized_keys"
