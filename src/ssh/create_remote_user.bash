@@ -29,7 +29,7 @@ for package in "${!dependencies[@]}"; do
   fi
 done
 
-readonly remote_init_script='!#/usr/bin/env bash
+remote_init_script='!#/usr/bin/env bash
 
 set +o '\''braceexpand'\''
 set -o '\''errexit'\''
@@ -40,7 +40,7 @@ set -o '\''pipefail'\''
 set -o '\''xtrace'\''
 
 declare -Ar dependencies=(
-  ['\''passwd'\'']='\''1:4.8.1-1'\''
+  ['\''passwd'\'']='\''1:4.8.1-1ubuntu5.20.04.4'\''
 )
 
 for package in "${!dependencies[@]}"; do
@@ -56,8 +56,10 @@ done
 if [[ $ZIM_TARGET_SUDOER == 'true' ]]; then
   remote_init_script+="sudo useradd -m -G sudo -- ${ZIM_TARGET_USER@Q}"$'\n'
 else
-  remote_init_script+="sudo useradd -m -- '${ZIM_TARGET_USER@Q}"$'\n'
+  remote_init_script+="sudo useradd -m -- ${ZIM_TARGET_USER@Q}"$'\n'
 fi
+
+remote_init_script+="sudo install -d -m 700 -o ${ZIM_TARGET_USER@Q} -g ${ZIM_TARGET_USER@Q} /home/${ZIM_TARGET_USER@Q}/.ssh"$'\n'
 
 ssh -i "$ZIM_KEY" "${ZIM_USER}@${ZIM_HOST}" <<<$remote_init_script
 
@@ -69,4 +71,5 @@ rsync \
   --no-perms \
   --chmod 'ugo=rwX' \
   --rsh   "ssh -i $ZIM_KEY" \
+  --rsync-path "sudo rsync" \
 -- "$ZIM_TARGET_PUBKEY" "$ZIM_USER@$ZIM_HOST:/home/$ZIM_TARGET_USER/.ssh/authorized_keys"
