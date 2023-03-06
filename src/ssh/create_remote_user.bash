@@ -51,9 +51,13 @@ for package in "${!dependencies[@]}"; do
     exit 1
   fi
 done
-
-sudo useradd -m -- '${ZIM_TARGET_USER@Q}'
 '
+
+if [[ $ZIM_TARGET_SUDOER == 'true' ]]; then
+  remote_init_script+="sudo useradd -m -G sudo -- ${ZIM_TARGET_USER@Q}"$'\n'
+else
+  remote_init_script+="sudo useradd -m -- '${ZIM_TARGET_USER@Q}"$'\n'
+fi
 
 ssh -i "$ZIM_KEY" "${ZIM_USER}@${ZIM_HOST}" <<<$remote_init_script
 
