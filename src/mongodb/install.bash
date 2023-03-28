@@ -1,10 +1,20 @@
 #!/usr/bin/env bash
 
-# installs mongodb with apt. <skr 2023-01-31>
+# REQ: Installs MongoDB with APT. <skr 2023-03-27>
 
-# https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-debian/ <>
+# SEE: https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-debian/ <>
 
-set +B -Cefuxo pipefail
+set +o braceexpand
+set -o errexit
+set -o noclobber
+set -o noglob
+set -o nounset
+set -o pipefail
+set -o xtrace
+
+# PORT: Only x86_64 "Bullseye" is currently supported. <2023-03-27>
+release='bullseye' # $(lsb_release -cs)
+architecture='amd64' # $(dpkg --print-architecture)
 
 package='mongodb-org'
 version='6.0'
