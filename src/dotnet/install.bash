@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-# installs the dotnet sdk with apt. <skr 2023-01-25>
+# REQ: Installs .NET SDK 7 with APT. <skr 2023-03-27>
 
-# https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian <>
+# SEE: https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian <>
+
+# PORT: Bookworm not yet supported. <skr 2023-03-27>
 
 set +o braceexpand
 set -o errexit
@@ -12,35 +14,46 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-repo=microsoft-debian-bullseye-prod
-packages=(dotnet-sdk-6.0 dotnet-sdk-7.0)
+readonly dependencies=('curl' 'gpg')
 
-keyserver=https://packages.microsoft.com/keys/microsoft.asc
-keyring=/usr/share/keyrings/microsoft.gpg
-fingerprint=0xEB3E94ADBE1229CF
+for package in "${dependencies[@]}"; do
+  dpkg-query --show "$package"
+done
 
-url=https://packages.microsoft.com/repos/$repo/
-arch=amd64
-list=/etc/apt/sources.list.d/dotnet.list
+architecture=$(dpkg --print-architecture); readonly architecture
+readonly keyring='/usr/share/keyrings/microsoft.gpg'
+readonly repository="microsoft-debian-bullseye-prod"
+readonly distribution='bullseye'
+readonly component='main'
 
-gpg --show-keys --keyid-format 0xLONG <(curl $keyserver)
+readonly packages=('dotnet-sdk-7.0')
 
-sudo gpg --no-default-keyring               \
-	 --keyring             $keyring     \
-	 --keyserver           $keyserver   \
-         --recv-keys           $fingerprint
+readonly keyserver='https://packages.microsoft.com/keys/microsoft.asc'
+readonly fingerprint='0xEB3E94ADBE1229CF'
 
-sudo gpg --no-default-keyring          \
-	 --keyring            $keyring \
-	 --keyid-format       0xLONG   \
+readonly url="https://packages.microsoft.com/repos/$repository/"
+readonly list="/etc/apt/sources.list.d/$repository.list"
+
+gpg --show-keys --keyid-format 0xLONG <(curl "$keyserver")
+
+sudo gpg \
+  --no-default-keyring       \
+	--keyring   "$keyring"     \
+	--keyserver "$keyserver"   \
+  --recv-keys "$fingerprint"
+
+sudo gpg \
+  --no-default-keyring       \
+	 --keyring      "$keyring" \
+	 --keyid-format 0xLONG     \
 	 --list-keys
 
-str="deb [arch=$arch signed-by=$keyring] $url $(lsb_release -cs) main"
+readonly source="deb [arch=$architecture signed-by=$keyring] $url $distribution main"
 
-sudo bash -c "echo ${str@Q} > $list"
-cat $list
+sudo bash -c "echo ${source@Q} > ${list@Q}"
+cat "$list"
 
 sudo apt-get update
-sudo apt-get --assume-yes install ${packages[@]}
+sudo apt-get --assume-yes install "${packages[@]}"
 
 dotnet --version
