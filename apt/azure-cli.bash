@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the latest Azure CLI from the APT repository. <skr 2023-03-24>
+# REQ: Installs the Azure CLI APT repository. <skr 2023-03-28>
 
-# SEE: https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux <>
+# SEE: https://github.com/microsoft/linux-package-repositories <>
 
-# PORT: Hardcodes the release to 'bullseye' until bookworm support is added. <2023-03-24>
+# PORT: Bookworm not yet supported. <skr 2023-03-29>
 
 set +o braceexpand
 set -o errexit
@@ -18,7 +18,7 @@ readonly dependencies=('curl' 'gpg' 'lsb-release')
 
 readonly keyserver='https://packages.microsoft.com/keys/microsoft.asc'
 readonly keyring='/usr/share/keyrings/microsoft.gpg'
-readonly fingerprint='0xEB3E94ADBE1229CF'
+readonly fingerprint='BC528686B50D79E339D3721CEB3E94ADBE1229CF'
 
 arch=$(dpkg --print-architecture)
 release="$(lsb_release -cs)"
@@ -34,16 +34,17 @@ for package in "${dependencies[@]}"; do
   dpkg-query --show "$package"
 done
 
-gpg --show-keys --keyid-format 0xLONG <(curl "$keyserver")
+gpg --show-keys <(curl "$keyserver")
 
-sudo gpg --no-default-keyring \
+sudo gpg \
+  --no-default-keyring \
   --keyring   "$keyring" \
   --keyserver "$keyserver" \
   --recv-keys "$fingerprint"
 
-sudo gpg --no-default-keyring \
-  --keyring      "$keyring" \
-  --keyid-format 0xLONG \
+sudo gpg \
+  --no-default-keyring \
+  --keyring   "$keyring" \
   --list-keys
 
 str="deb [arch=$arch signed-by=$keyring] $repo $release $component"
@@ -52,4 +53,3 @@ sudo bash -c "echo ${str@Q} > $list"
 cat $list
 
 sudo apt-get update
-sudo apt-get --assume-yes install azure-cli
