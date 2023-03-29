@@ -19,7 +19,7 @@ A standalone userscript library for a brand-new kind of Linux distribution.
 ## Error Codes
 
 Code | Description
--- | --
+:-- | :--
 1 | script failure
 2 | unresolved dependency
 3 | broken dependency
