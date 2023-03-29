@@ -5,7 +5,7 @@
 # zim 📚
 A standalone userscript library for a brand-new kind of Linux distribution.
 
-## Design Intent
+## Design Intention
 `zim` targets [Debian “bookworm”](https://www.debian.org/releases/bookworm/).
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;only validates script dependencies, it does not attempt to resolve them.
@@ -15,6 +15,14 @@ A standalone userscript library for a brand-new kind of Linux distribution.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is verbose.
+
+## Error Codes
+
+Code | Description
+-- | --
+1 | script failure
+2 | unresolved dependency
+3 | broken dependency
 
 ## Kudos
 🕊️ *In Memoriam [Ian Murdock](https://en.wikipedia.org/wiki/Ian_Murdock)*
