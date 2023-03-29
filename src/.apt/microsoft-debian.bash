@@ -6,6 +6,10 @@
 
 # PORT: Bookworm not yet supported. <skr 2023-03-27>
 
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 set +o braceexpand
 set -o errexit
 set -o noclobber
@@ -17,7 +21,21 @@ set -o xtrace
 readonly dependencies=('curl' 'gpg')
 
 for package in "${dependencies[@]}"; do
-  dpkg-query --show "$package"
+  if status=$(dpkg-query --show --show-format '${db:Status-Status}' "$package"; then
+    if [[ "$status" != 'installed' ]]; then
+      echo "Unexpected status $status for package $package." >&2
+      exit 4
+    fi
+  else
+    if [[ $? -eq 1 ]]; then
+      echo "Package $package not found." >&2
+      echo "To install:" >&2
+      echo "  sudo apt-get install $package" >&2
+    else
+      echo "dpkg-query failed with unexpected status $status." >&2
+      exit 5
+    fi
+  fi
 done
 
 architecture=$(dpkg --print-architecture)
