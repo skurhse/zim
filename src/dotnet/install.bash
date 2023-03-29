@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 
-# REQ: Installs .NET SDK 7 with APT. <skr 2023-03-27>
+# REQ: Installs the .NET 7.0 SDK. <skr 2023-03-28>
 
 # SEE: https://learn.microsoft.com/en-us/dotnet/core/install/linux-debian <>
-
-# PORT: Bookworm not yet supported. <skr 2023-03-27>
 
 set +o braceexpand
 set -o errexit
@@ -14,46 +12,37 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-readonly dependencies=('curl' 'gpg')
+readonly package='dotnet-sdk-7.0'
 
-for package in "${dependencies[@]}"; do
-  dpkg-query --show "$package"
-done
+if ! apt-cache show "$package"; then
+  if [[ $PIPESTATUS == 100 ]]; then
+    dirname=$(dirname -- "$0")
+    path=$(realpath -- "$dirname/../apt/microsoft-debian.bash")
+    echo "The microsoft debian repository is not installed."
+    echo "To install, run:"
+    echo "$path"
+    exit 4
+  else
+    echo "Unexpected apt-cache show exit code: $PIPESTATUS"
+    exit 5
+  fi
+fi
 
-architecture=$(dpkg --print-architecture); readonly architecture
-readonly keyring='/usr/share/keyrings/microsoft.gpg'
-readonly repository="microsoft-debian-bullseye-prod"
-readonly distribution='bullseye'
-readonly component='main'
+if status=$(dpkg-query --show --showformat='${db:Status-Status}' "$package"); then
+  if [[ "$status" == 'installed' ]]; then
+    echo "$package is already installed."
+    exit 2
+  else
+    echo "Unexpected dpkg-query status: $status"
+    exit 5
+  fi
+else
+  if [[ $? != 1 ]]; then
+    echo "Unexpected dpkg-query exit code: $?"
+    exit 5
+  fi
+fi
 
-readonly packages=('dotnet-sdk-7.0')
-
-readonly keyserver='https://packages.microsoft.com/keys/microsoft.asc'
-readonly fingerprint='0xEB3E94ADBE1229CF'
-
-readonly url="https://packages.microsoft.com/repos/$repository/"
-readonly list="/etc/apt/sources.list.d/$repository.list"
-
-gpg --show-keys --keyid-format 0xLONG <(curl "$keyserver")
-
-sudo gpg \
-  --no-default-keyring       \
-	--keyring   "$keyring"     \
-	--keyserver "$keyserver"   \
-  --recv-keys "$fingerprint"
-
-sudo gpg \
-  --no-default-keyring       \
-	 --keyring      "$keyring" \
-	 --keyid-format 0xLONG     \
-	 --list-keys
-
-readonly source="deb [arch=$architecture signed-by=$keyring] $url $distribution main"
-
-sudo bash -c "echo ${source@Q} > ${list@Q}"
-cat "$list"
-
-sudo apt-get update
-sudo apt-get --assume-yes install "${packages[@]}"
+sudo apt-get install --assume-yes -- "$package"
 
 dotnet --version
