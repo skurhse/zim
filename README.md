@@ -27,4 +27,4 @@ Code | Description
 3 | dependency status unexpected
 
 ## Kudos
-🕊️ *In Memoriam [Ian Murdock](https://en.wikipedia.org/wiki/Ian_Murdock)*
+🕊️ *In Memoriam [Ian Murdock](https://www.debian.org/doc/manuals/project-history/manifesto.en.html)*
