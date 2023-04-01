@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the Azure CLI APT repository. <skr 2023-03-28>
+# REQ: Installs the Azure CLI APT repository and signing key. <skr 2023-03-31>
 
 # SEE: https://github.com/microsoft/linux-package-repositories <>
 
