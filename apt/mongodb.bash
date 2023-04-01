@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the MongoDB APT repository and signing key. <skr>
+# REQ: Installs the MongoDB Server 6.0 APT repository and signing key. <eris>
 
 # SEE: https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-debian/ <>
 
 # PORT: Only x86_64 "Bullseye" is currently supported. <>
-
 # SEE: https://repo.mongodb.org/apt/debian/dists/ <2023-03-31>
+
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 set +o braceexpand
 set -o errexit
@@ -44,7 +47,7 @@ sudo gpg \
 
 source="${archive_type} [arch=${architecture} signed-by=${signed_by}] ${repository_url} ${distribution} ${component}"
 
-sudo bash -c "echo ${source@Q} > $list"
+sudo bash -c "echo ${source@Q} >${list@Q}"
 cat "$list"
 
 sudo apt-get update
