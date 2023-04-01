@@ -6,7 +6,7 @@
 A standalone userscript library for a brand-new kind of Linux distribution.
 
 ## Design Intention
-`zim` targets [Debian “bookworm”](https://www.debian.org/releases/bookworm/).
+`zim` targets Debian [“bookworm”](https://www.debian.org/releases/bookworm/).
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;only validates dependencies, it does not resolve them.
 
