@@ -22,9 +22,9 @@ A standalone userscript library for a brand-new kind of Linux distribution.
 
 Code | Description
 :-- | :--
-1 | script failure
-2 | unresolved dependency
-3 | broken dependency
+1 | program failure
+2 | dependency not found
+3 | dependency status unexpected
 
 ## Kudos
 🕊️ *In Memoriam [Ian Murdock](https://en.wikipedia.org/wiki/Ian_Murdock)*
