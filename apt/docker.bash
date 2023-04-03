@@ -3,7 +3,6 @@
 # REQ: Installs the Docker APT repository and signing key. <skr 2023-03-31>
 
 # SEE: https://docs.docker.com/engine/install/debian/ <>
-# SEE: https://docs.docker.com/engine/install/linux-postinstall/ <>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
