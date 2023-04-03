@@ -1,21 +1,50 @@
 #!/usr/bin/env bash
 
-# REQ: Installs Docker ands configures the current shell. <skr 2023-03-31>
+# REQ: Installs Docker ands configures the current shell, if top-level. <skr 2023-03-31>
 
 # SEE: https://docs.docker.com/engine/install/debian/#install-using-the-repository <>
 # SEE: https://docs.docker.com/engine/install/linux-postinstall/ <>
 
 # USAGE: exec custom/docker.bash <>
 
-set -o errexit -o xtrace
+set -o errexit
 
-trap 'exec sudo --preserve-env --user $USER bash' INT EXIT
+readonly exec=(exec sudo --preserve-env --user $USER bash)
+
+function handle_int()
+{
+  echo 'Script Interrupted.'
+  if [[ $SHLVL -eq 1 ]]; then
+    ${exec[@]}
+  fi
+}
+trap handle_int INT
+
+function handle_exit()
+{
+  local code=$?
+  local err='Something went terribly wrong.'
+  
+  if [[ $code -ne 0 ]]; then
+    echo $err
+  else
+    if [[ $SHLVL -ne 1 ]]; then
+      echo "WARN: Script SHLVL is $SHLVL."
+      echo "To complete installation, please refresh your top-level shell process:"
+      echo "  ${exec[@]}"
+      exit
+    fi
+  fi
+   
+  ${exec[@]}
+}
+trap handle_exit EXIT
 
 readonly packages=(
-  docker-ce
-  docker-ce-cli
   containerd.io
   docker-buildx-plugin
+  docker-ce
+  docker-ce-cli
   docker-compose-plugin
 )
 
@@ -25,5 +54,4 @@ sudo usermod --append --groups docker $USER
 
 sudo apt-get update
 sudo apt-get install --yes ${packages[@]}
-
 sudo --user $USER bash -c 'docker run hello-world'
