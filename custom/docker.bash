@@ -18,6 +18,7 @@ readonly exec=(exec sudo --preserve-env --user $USER bash)
 function handle_int()
 {
   echo 'Script Interrupted.'
+
   if [[ $SHLVL -eq 1 ]]; then
     ${exec[@]}
   fi
