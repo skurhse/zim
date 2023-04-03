@@ -26,11 +26,8 @@ trap handle_int INT
 
 function handle_exit()
 {
-  local code=$?
-  local err='Something went terribly wrong.'
-  
-  if [[ $code -ne 0 ]]; then
-    echo $err
+  if [[ $? -ne 0 ]]; then
+    echo 'Something went terribly wrong.'
   else
     if [[ $SHLVL -ne 1 ]]; then
       echo "WARN: Script SHLVL is $SHLVL."
