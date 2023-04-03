@@ -5,28 +5,25 @@
 # SEE: https://docs.docker.com/engine/install/debian/#install-using-the-repository <>
 # SEE: https://docs.docker.com/engine/install/linux-postinstall/ <>
 
-# NOTE: This script is intended to be sourced. <>
+# USAGE: exec custom/docker.bash <>
 
-set -o xtrace
+set -o errexit -o xtrace
 
-function main()
-{
-  set -o errexit
+trap 'exec sudo --preserve-env --user $USER bash' INT EXIT
 
-  readonly packages=(
-    docker-ce
-    docker-ce-cli
-    containerd.io
-    docker-buildx-plugin
-    docker-compose-plugin
-  )
+readonly packages=(
+  docker-ce
+  docker-ce-cli
+  containerd.io
+  docker-buildx-plugin
+  docker-compose-plugin
+)
 
-  # CAVEAT: Group changes must precede service installation. <skr>
-  sudo groupadd -f docker
-  sudo usermod -aG docker $USER
+# CAVEAT: Group changes must precede service installation. <skr>
+sudo groupadd --force docker
+sudo usermod --append --groups docker $USER
 
-  sudo apt-get update
-  sudo apt-get install --yes ${packages[@]}
-}
+sudo apt-get update
+sudo apt-get install --yes ${packages[@]}
 
-main && exec sudo --preserve-env --user $USER bash -c 'docker run hello-world;exec bash'
+sudo --user $USER bash -c 'docker run hello-world'
