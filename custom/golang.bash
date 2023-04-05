@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # REQ: Installs go from the official release archive. <skr 2021-01-16>
 # SEE: https://go.dev/doc/install <>
 # ..............................................................................
