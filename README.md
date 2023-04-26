@@ -5,7 +5,7 @@
 # zim 📚
 A userscript library for a brand-new kind of Linux distribution.
 
-## Design Intention
+## Features
 `zim` targets Debian "[bookworm](https://www.debian.org/releases/bookworm/)".
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;only validates dependencies, it does not resolve them.
