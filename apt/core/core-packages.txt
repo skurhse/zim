@@ -1,0 +1,12 @@
+haskell-stack
+htop
+ffmpeg
+gnupg2
+grep
+imagemagick
+neofetch
+rsync
+sed
+tar
+traceroute
+webp
