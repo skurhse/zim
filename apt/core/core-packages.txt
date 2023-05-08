@@ -8,5 +8,6 @@ neofetch
 rsync
 sed
 tar
+tasksel
 traceroute
 webp
