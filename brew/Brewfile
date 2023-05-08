@@ -6,9 +6,5 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-# SEE: https://goreleaser.com/install/#install-the-pre-compiled-binary <>
-tap "goreleaser/tap"
-brew "goreleaser"
-
 # SEE: https://clojure.org/guides/install_clojure <>
 brew "clojure"
