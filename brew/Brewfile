@@ -1,0 +1,4 @@
+tap "goreleaser/tap"
+
+brew "clojure"
+brew "goreleaser"

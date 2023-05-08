@@ -1,0 +1,79 @@
+{
+  "entries": {
+    "tap": {
+      "goreleaser/tap": {
+        "revision": "7e0a1f6339396bf000e768d4fac0093efc3bfeb4"
+      }
+    },
+    "brew": {
+      "goreleaser": {
+        "version": "1.18.2",
+        "bottle": {
+          "rebuild": 0,
+          "root_url": "https://ghcr.io/v2/homebrew/core",
+          "files": {
+            "arm64_ventura": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/goreleaser/blobs/sha256:b4b19bd907620527647dad10a7abaeb1b08916fff6de9ce40c4e917eab7d7b8b",
+              "sha256": "b4b19bd907620527647dad10a7abaeb1b08916fff6de9ce40c4e917eab7d7b8b"
+            },
+            "arm64_monterey": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/goreleaser/blobs/sha256:b4b19bd907620527647dad10a7abaeb1b08916fff6de9ce40c4e917eab7d7b8b",
+              "sha256": "b4b19bd907620527647dad10a7abaeb1b08916fff6de9ce40c4e917eab7d7b8b"
+            },
+            "arm64_big_sur": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/goreleaser/blobs/sha256:b4b19bd907620527647dad10a7abaeb1b08916fff6de9ce40c4e917eab7d7b8b",
+              "sha256": "b4b19bd907620527647dad10a7abaeb1b08916fff6de9ce40c4e917eab7d7b8b"
+            },
+            "ventura": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/goreleaser/blobs/sha256:286dca82fa5d1358b2002df02585acd2c07ba8232573c10ca2919025efa7f955",
+              "sha256": "286dca82fa5d1358b2002df02585acd2c07ba8232573c10ca2919025efa7f955"
+            },
+            "monterey": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/goreleaser/blobs/sha256:286dca82fa5d1358b2002df02585acd2c07ba8232573c10ca2919025efa7f955",
+              "sha256": "286dca82fa5d1358b2002df02585acd2c07ba8232573c10ca2919025efa7f955"
+            },
+            "big_sur": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/goreleaser/blobs/sha256:286dca82fa5d1358b2002df02585acd2c07ba8232573c10ca2919025efa7f955",
+              "sha256": "286dca82fa5d1358b2002df02585acd2c07ba8232573c10ca2919025efa7f955"
+            },
+            "x86_64_linux": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/goreleaser/blobs/sha256:c56f7f3492732b721cbfed2f707b83e366efd68eee8af26ac138dcb55b289865",
+              "sha256": "c56f7f3492732b721cbfed2f707b83e366efd68eee8af26ac138dcb55b289865"
+            }
+          }
+        }
+      },
+      "clojure": {
+        "version": "1.11.1.1273",
+        "bottle": {
+          "rebuild": 0,
+          "root_url": "https://ghcr.io/v2/homebrew/core",
+          "files": {
+            "all": {
+              "cellar": ":any_skip_relocation",
+              "url": "https://ghcr.io/v2/homebrew/core/clojure/blobs/sha256:42c9374a97adf4ed6426fe1dffcd22b046b91c01079f28530f64ebde657a298f",
+              "sha256": "42c9374a97adf4ed6426fe1dffcd22b046b91c01079f28530f64ebde657a298f"
+            }
+          }
+        }
+      }
+    }
+  },
+  "system": {
+    "linux": {
+      "Debian GNU/Linux 12 (bookworm) (bookworm)": {
+        "HOMEBREW_VERSION": "4.0.16",
+        "HOMEBREW_PREFIX": "/home/linuxbrew/.linuxbrew",
+        "Homebrew/homebrew-core": "api",
+        "GCC": "12.2.0"
+      }
+    }
+  }
+}
