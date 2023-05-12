@@ -1,6 +1,7 @@
-# REQ: For use with `brew bundle`. <eris 2023-05-07>
+# REQ: For use with `brew bundle`. <eris 2023-05-11>
 
 # SEE: https://github.com/Homebrew/homebrew-bundle <>
+# SEE: https://docs.brew.sh/Manpage#bundle-subcommand <>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -10,8 +11,10 @@
 tap "goreleaser/tap"
 brew "goreleaser"
 
-# SEE: https://clojure.org/guides/install_clojure <>
+# SEE: https://clojure.org/guides/install_clojure#_linux_instructions <>
+tap "clojure/tools"
 brew "clojure"
 
 # SEE: https://github.com/babashka/babashka#brew <>
+tap "borkdude/brew"
 brew "babashka"
