@@ -12,3 +12,6 @@ brew "goreleaser"
 
 # SEE: https://clojure.org/guides/install_clojure <>
 brew "clojure"
+
+# SEE: https://github.com/babashka/babashka#brew <>
+brew "babashka"

@@ -9,5 +9,6 @@ rsync
 sed
 tar
 tasksel
+telnet
 traceroute
 webp
