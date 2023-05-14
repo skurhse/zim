@@ -20,6 +20,18 @@ set -o xtrace
 sudo apt-get install 'haskell-stack'
 stack upgrade --binary-only
 
+# SEE: https://wiki.debian.org/KDE#Installation <>
+kde_packages=(
+  'kde-full'
+  'breeze-gtk-theme'
+  'kde-config-gtk-style'
+  'kde-config-gtk-style-preview'
+)
+sudo apt-get install "${kde_packages[@]}"
+
+# SEE: https://packages.debian.org/bookworm/xrdp <>
+sudo apt-get install 'xrdp'
+
 declare -a packages
 packages+=('htop')
 packages+=('ffmpeg')
@@ -30,7 +42,6 @@ packages+=('neofetch')
 packages+=('rsync')
 packages+=('sed')
 packages+=('tar')
-packages+=('tasksel')
 packages+=('telnet')
 packages+=('traceroute')
 packages+=('webp')
