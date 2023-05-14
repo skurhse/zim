@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# REQ: Installs packages from core. <eris 2023-05-07>
+# REQ: Installs packages from core. <eris 2023-05-13>
 
 # SEE: https://packages.debian.org/bookworm/ <>
 
@@ -16,11 +16,27 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
+# SEE: https://docs.haskellstack.org/en/stable/install_and_upgrade/#linux-packages <>
+sudo apt-get install 'haskell-stack'
+stack upgrade --binary-only
+
+declare -a packages
+packages+=('htop')
+packages+=('ffmpeg')
+packages+=('gnupg2')
+packages+=('grep')
+packages+=('imagemagick')
+packages+=('neofetch')
+packages+=('rsync')
+packages+=('sed')
+packages+=('tar')
+packages+=('tasksel')
+packages+=('telnet')
+packages+=('traceroute')
+packages+=('webp')
+
 dirname=$(dirname "$0")
 cd "$dirname"
 
-readarray -t packages < core-packages.txt
-
 sudo apt-get update
 sudo apt-get install -y "${packages[@]}"
-sudo apt-get autoremove
