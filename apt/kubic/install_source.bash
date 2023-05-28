@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# REQ: Adds the kubic apt repository and signing key. <eris 2023-05-25>
+# REQ: Installs the kubic apt repository and signing key. <eris 2023-05-25>
 # SEE: https://podman.io/docs/installation#debian <>
 
 # !!!: Not presently working. <eris 2023-05-26>
