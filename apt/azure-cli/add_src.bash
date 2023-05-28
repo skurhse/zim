@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the Azure CLI APT repository and signing key. <skr 2023-03-31>
-
+# REQ: Adds the Azure CLI repository and signing key. <skr 2023-03-31>
 # SEE: https://github.com/microsoft/linux-package-repositories <>
 
-# PORT: Bookworm not yet supported. <skr 2023-03-29>
+# PORT: Bookworm not yet supported. <eris 2023-05-27>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
