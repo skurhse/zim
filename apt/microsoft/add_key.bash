@@ -19,37 +19,33 @@ set -o xtrace
 
 readonly dependencies=('curl' 'gpg')
 
-for package in "${dependencies[@]}"; do
-  if status=$(dpkg-query --show --show-format '${db:Status-Status}' "$package"; then
-    if [[ "$status" != 'installed' ]]; then
+for package in "${dependencies[@]}"
+do
+  if status=$(dpkg-query --show --showformat '${db:Status-Status}' "$package")
+  then
+    if [[ "$status" != 'installed' ]]
+    then
       echo "Unexpected status $status for package $package." >&2
-      exit 4
+      exit 3
     fi
   else
-    if [[ $? -eq 1 ]]; then
+    if [[ $? -eq 1 ]]
+    then
       echo "Package $package not found." >&2
       echo "To install:" >&2
       echo "  sudo apt-get install $package" >&2
     else
       echo "dpkg-query failed with unexpected status $status." >&2
-      exit 5
+      exit 1
     fi
   fi
 done
 
 architecture=$(dpkg --print-architecture)
 
-readonly architecture
 readonly keyring='/usr/share/keyrings/microsoft.gpg'
-readonly repository="microsoft-debian-bullseye-prod"
-readonly distribution='bullseye'
-readonly component='main'
-
 readonly keyserver='https://packages.microsoft.com/keys/microsoft.asc'
-readonly fingerprint='0xEB3E94ADBE1229CF'
-
-readonly url="https://packages.microsoft.com/repos/$repository/"
-readonly list="/etc/apt/sources.list.d/$repository.list"
+readonly fingerprint='BC528686B50D79E339D3721CEB3E94ADBE1229CF'
 
 gpg --show-keys --keyid-format 0xLONG <(curl "$keyserver")
 
@@ -64,10 +60,3 @@ sudo gpg \
   --keyring      "$keyring" \
   --keyid-format 0xLONG     \
   --list-keys
-
-readonly source="deb [arch=$architecture signed-by=$keyring] $url $distribution main"
-
-sudo bash -c "echo ${source@Q} > ${list@Q}"
-cat "$list"
-
-sudo apt-get update
