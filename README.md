@@ -3,7 +3,7 @@
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
 # zim 📚
-A userscript library for a brand-new kind of Linux distribution.
+A eclectic userscript library for a brand-new kind of Linux distribution.
 
 ## Features
 `zim` targets [Debian 12 Bookworm](https://www.debian.org/releases/bookworm/).
