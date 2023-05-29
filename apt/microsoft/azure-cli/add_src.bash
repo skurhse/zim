@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-# REQ: Adds the Azure CLI repository and signing key. <skr 2023-03-31>
-# SEE: https://github.com/microsoft/linux-package-repositories <>
-
-# PORT: Bookworm not yet supported. <eris 2023-05-27>
+# REQ: Adds the Azure CLI repository. <eris 2023-05-29>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -17,40 +14,62 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-readonly dependencies=('curl' 'gpg' 'lsb-release')
+readonly packages=(
+  'awk'
+  'gnupg'
+)
 
-readonly keyserver='https://packages.microsoft.com/keys/microsoft.asc'
+for package in "${packages[@]}"
+do
+  if status=$(dpkg-query --show --showformat '${db:Status-Status}' "$package")
+  then
+    if [[ "$status" != 'installed' ]]
+    then
+      echo "ERROR: unexpected status ${status@Q} for package ${package@Q}." >&2
+      exit 3  
+    fi
+  else
+    if [[ $? -eq 1 ]]
+    then
+      echo "ERROR: package ${package@Q} not found." >&2
+      exit 2
+    else
+      echo "ERROR: dpkg-query failed with exit status ${status@Q}." >&2
+      exit 1
+    fi
+  fi
+done
+
+architecture=$(dpkg --print-architecture)
+readonly architecture
+
+# PORT: Bookworm not yet supported. <eris 2023-05-29>
+# release=$(lsb_release -cs)
+readonly release='bullseye'
+
 readonly keyring='/usr/share/keyrings/microsoft.gpg'
 readonly fingerprint='BC528686B50D79E339D3721CEB3E94ADBE1229CF'
 
-arch=$(dpkg --print-architecture)
-release="$(lsb_release -cs)"
-
-readonly arch
-readonly repo='https://packages.microsoft.com/repos/azure-cli/'
-readonly release='bullseye'
+readonly repository='https://packages.microsoft.com/repos/azure-cli/'
 readonly component='main'
 
-readonly list='/etc/apt/sources.list.d/microsoft.list'
+readonly list='/etc/apt/sources.list.d/azure-cli.list'
 
 for package in "${dependencies[@]}"; do
   dpkg-query --show "$package"
 done
 
-gpg --show-keys <(curl "$keyserver")
+key=$(gpg --show-keys --with-colons --with-fingerprint "$keyring")
 
-sudo gpg \
-  --no-default-keyring \
-  --keyring   "$keyring" \
-  --keyserver "$keyserver" \
-  --recv-keys "$fingerprint"
+actual=$(awk -F: '/^fpr:/ {print $10}' <<<$key)
 
-sudo gpg \
-  --no-default-keyring \
-  --keyring   "$keyring" \
-  --list-keys
+if [[ $actual != $fingerprint ]]
+then
+  echo "ERROR: fingerprint mismatch. Expected: $fingerprint Actual: $actual" >&2
+  exit 5
+fi
 
-str="deb [arch=$arch signed-by=$keyring] $repo $release $component"
+str="deb [arch=$architecture signed-by=$keyring] $repository $release $component"
 
 sudo bash -c "echo ${str@Q} > $list"
 cat $list
