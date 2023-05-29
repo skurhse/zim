@@ -21,8 +21,8 @@ A eclectic userscript library for a brand-new kind of Linux distribution.
 Code | Description
 :-- | :--
 1 | program failure
-2 | dependency not found
-3 | dependency status unexpected
+2 | package not found
+3 | package status unexpected
 4 | operation not permitted
 5 | fingerprint mismatch
 
