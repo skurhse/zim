@@ -17,8 +17,7 @@ set -o pipefail
 set -o xtrace
 
 readonly packages=(
-  'azure-cli'
-  'azure-functions-core-tools'
+  azure-cli
 )
 
 readonly extensions=(
@@ -32,12 +31,6 @@ sudo apt-get install --yes "${packages[@]}"
 az upgrade --all
 
 azure -version
-
-func --version
-export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
-if ! grep --line-regexp --silent "export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1" ~/.bash_profile; then
-  echo "export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1" >> ~/.bash_profile
-fi
 
 for extension in "${extensions[@]}"; do
   az extension add --name "${extension}" --yes
