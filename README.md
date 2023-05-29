@@ -24,6 +24,7 @@ Code | Description
 2 | dependency not found
 3 | dependency status unexpected
 4 | operation not permitted
+5 | fingerprint mismatch
 
 ## Kudos
 🕊️ *In Memoriam [Ian Murdock](https://www.debian.org/doc/manuals/project-history/manifesto.en.html)*
