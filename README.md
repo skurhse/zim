@@ -8,7 +8,7 @@ A eclectic userscript library for a brand-new kind of Linux distribution.
 ## Features
 `zim` targets [Debian 12 Bookworm](https://www.debian.org/releases/bookworm/).
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;only validates dependencies, it does not resolve them.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;only validates dependencies, it does not proactively resolve them.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isolates component operations into self-contained script files.
 
