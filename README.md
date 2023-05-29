@@ -23,6 +23,7 @@ Code | Description
 1 | program failure
 2 | dependency not found
 3 | dependency status unexpected
+4 | operation not permitted
 
 ## Kudos
 🕊️ *In Memoriam [Ian Murdock](https://www.debian.org/doc/manuals/project-history/manifesto.en.html)*
