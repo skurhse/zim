@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the neovim init configuration from Gist using the Github CLI. <skr 2023-03-02>
+# REQ: Installs the neovim init.lua symlink. <eris 2023-05-29>
+# SEE: https://neovim.io/doc/user/lua-guide.html <> 
 
 set +o braceexpand
 set -o errexit
@@ -10,21 +11,15 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-declare -A gist=(
-  ['id']='3071390d8a63efdd6e90542ac8c6115d'
-  ['user']='skurhse'
-  ['filename']='init.lua'
-)
-gist['url']="https://gist.github.com/${gist['user']}/${gist['id']}"
+readonly cfg_dir=~/'.config/nvim/'
 
-tmp_dir='/tmp/${gist[url]##*/}/'
-source_file="${tmp_dir}/${gist['filename']}"
-target_dir=~/'.config/nvim/'
+src_dir=$(dirname "$BASH_SOURCE")
+src_dir=$(realpath "$src_dir")
+readonly src_dir
 
-rm --force --recursive --verbose "$tmp_dir"
+src_file="$src_dir/init.lua" 
+readonly src_file
 
-gh gist clone "${gist['url']}" "$tmp_dir" -- --verbose
+mkdir --parents --verbose "$cfg_dir"
 
-mkdir --parents --verbose "$target_dir"
-
-cp --verbose "$source_file" "$target_dir" 
+ln -fs "$src_file" "$cfg_dir"
