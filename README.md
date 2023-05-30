@@ -23,7 +23,7 @@ Code | Description
 1 | program failure
 2 | package not found
 3 | package status unexpected
-4 | cannot delete key
+4 | cannot delete keyring
 5 | fingerprint mismatch
 
 ## Kudos
