@@ -14,11 +14,13 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
+readonly keyring='/usr/share/keyrings/microsoft.gpg'
+
 for list in 'azure-cli' 'microsoft-debian'
 do
   if [[ -f "/etc/apt/sources.list.d/$list" ]]
   then
-    echo "ERROR: $list exists and is a file." >&2
+    echo "ERROR: cannot delete keyring ${keyring@Q}: list ${list@Q} exists and is a file." >&2
     exit 4
   fi
 done

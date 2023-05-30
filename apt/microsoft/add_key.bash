@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the Microsoft Debian APT signing key. <eris 2023-05-27>
-# SEE: https://github.com/microsoft/linux-package-repositories <>
-
-# PORT: Bookworm not yet supported. <skr 2023-03-27>
+# REQ: Installs the Microsoft Debian signing key. <eris 2023-05-27>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -17,46 +14,27 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-readonly dependencies=('curl' 'gpg')
 
-for package in "${dependencies[@]}"
-do
-  if status=$(dpkg-query --show --showformat '${db:Status-Status}' "$package")
+if status=$(dpkg-query --show --showformat '${db:Status-Status}' 'gpg')
+then
+  if [[ "$status" != 'installed' ]]
   then
-    if [[ "$status" != 'installed' ]]
-    then
-      echo "Unexpected status $status for package $package." >&2
-      exit 3
-    fi
-  else
-    if [[ $? -eq 1 ]]
-    then
-      echo "Package $package not found." >&2
-      echo "To install:" >&2
-      echo "  sudo apt-get install $package" >&2
-    else
-      echo "dpkg-query failed with unexpected status $status." >&2
-      exit 1
-    fi
+    echo "ERROR: gpg package status ${status@Q}, expected 'installed'" >&2
+    exit 3
   fi
-done
-
-architecture=$(dpkg --print-architecture)
-
-readonly keyring='/usr/share/keyrings/microsoft.gpg'
-readonly keyserver='https://packages.microsoft.com/keys/microsoft.asc'
-readonly fingerprint='BC528686B50D79E339D3721CEB3E94ADBE1229CF'
-
-gpg --show-keys --keyid-format 0xLONG <(curl "$keyserver")
-
-sudo gpg \
-  --no-default-keyring       \
-  --keyring   "$keyring"     \
-  --keyserver "$keyserver"   \
-  --recv-keys "$fingerprint"
+else
+  if [[ $? -eq 1 ]]
+  then
+    echo "ERROR: Package gpg not found." >&2
+    exit 2
+  else
+    echo "dpkg-query failed with exit status $?" >&2
+    exit 1
+  fi
+fi
 
 sudo gpg \
-  --no-default-keyring      \
-  --keyring      "$keyring" \
-  --keyid-format 0xLONG     \
-  --list-keys
+  --no-default-keyring \
+  --keyring '/usr/share/keyrings/microsoft.gpg' \
+  --keyserver 'https://packages.microsoft.com/keys/microsoft.asc' \
+  --recv-keys 'BC528686B50D79E339D3721CEB3E94ADBE1229CF'
