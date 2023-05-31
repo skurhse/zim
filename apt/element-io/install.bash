@@ -15,12 +15,13 @@ set -o pipefail
 set -o xtrace
 
 readonly keyserver=https://packages.element.io/debian/element-io-archive-keyring.gpg
-readonly fingerprint=2472D6D0D2F66AF87ABA8DA34D64390375060AA4
+readonly fingerprint=12D4CD600C2240A9F4A82071D7B0B66941D01538
 readonly keyring=/usr/share/keyrings/element-io-archive-keyring.gpg
 
 arch=$(dpkg --print-architecture)
 readonly arch
 
+readonly repo=https://packages.element.io/debian/
 readonly distro=default
 readonly component=main
 
@@ -37,4 +38,4 @@ sudo bash -c "echo ${entry@Q} > ${list@Q}"
 
 sudo apt-get update
 
-sudo apt-get install element-desktop
+sudo apt-get install --yes element-desktop
