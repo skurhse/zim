@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-# REQ: Adds the Microsoft Debian APT repository. <eris 2023-05-27>
-# SEE: https://github.com/microsoft/linux-package-repositories <>
+# REQ: Installs the .NET SDK and Azure Functions Core Tools. <eris 2023-06-01>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -18,7 +17,7 @@ set -o xtrace
 arch=$(dpkg --print-architecture)
 readonly arch
 
-readonly repo='https://packages.microsoft.com/repos/microsoft-debian-bullseye-prod'
+readonly repo='https://packages.microsoft.com/repos/microsoft-debian-bullseye-prod/'
 
 # PORT: Bookworm not yet supported. <eris 2023-05-27>
 readonly distro='bullseye'
