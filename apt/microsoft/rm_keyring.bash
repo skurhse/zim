@@ -25,4 +25,4 @@ do
   fi
 done
 
-sudo rm --force --verbose '/usr/share/keyrings/microsoft.gpg'
+sudo rm --force --verbose "$keyring"
