@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# REQ: Adds the Azure CLI repository. <eris 2023-05-29>
+# REQ: Adds the Azure CLI repository to the Microsoft source list. <eris 2023-05-29>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -39,9 +39,9 @@ readonly extensions=(
   'aks-preview'
 )
 
-str="deb [arch=$architecture signed-by=$keyring] $repo $release $component"
+entry="deb [arch=$arch signed-by=$keyring] $repo $release $component"
 
-sudo bash -c "echo ${str@Q} >>${list@Q}"
+sudo bash -c "echo ${entry@Q} >>${list@Q}"
 
 sudo apt-get update
 

@@ -16,6 +16,10 @@ set -o xtrace
 
 readonly keyring='/usr/share/keyrings/microsoft.gpg'
 readonly list='/etc/apt/sources.list.d/microsoft.list'
+readonly repo='https://packages.microsoft.com/repos/azure-cli/'
 
-sudo rm -f "$keyring" "$list"
+sudo sed -i "|$repo|d" "$list"
+
+[ -s "$list" ] || sudo rm -f "$list"
+
 sudo apt-get update
