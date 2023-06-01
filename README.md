@@ -10,7 +10,7 @@ A eclectic userscript library for a brand-new kind of Linux distribution.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;only validates script dependencies (it does not attempt to resolve them).
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;breaks down component operations into individual script files when necessary.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;breaks down component operations into individual script files, when necessary.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;expresses faults through error codes.
 
