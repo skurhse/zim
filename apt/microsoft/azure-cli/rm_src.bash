@@ -17,5 +17,6 @@ set -o xtrace
 readonly keyring='/usr/share/keyrings/microsoft.gpg'
 readonly list='/etc/apt/sources.list.d/microsoft.list'
 
+
 sudo rm -f "$keyring" "$list"
 sudo apt-get update

@@ -18,7 +18,7 @@ readonly keyring='/usr/share/keyrings/microsoft.gpg'
 
 for list in 'azure-cli' 'microsoft-debian'
 do
-  if [[ -f "/etc/apt/sources.list.d/$list" ]]
+  if [[ -f "/etc/apt/sources.list.d/$list.list" ]]
   then
     echo "ERROR: cannot delete keyring ${keyring@Q}: list ${list@Q} exists and is a file." >&2
     exit 4
