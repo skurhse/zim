@@ -30,7 +30,7 @@ readonly fingerprint='BC528686B50D79E339D3721CEB3E94ADBE1229CF'
 readonly repo='https://packages.microsoft.com/repos/azure-cli/'
 readonly component='main'
 
-readonly list='/etc/apt/sources.list.d/azure-cli.list'
+readonly list='/etc/apt/sources.list.d/microsoft.list'
 readonly packages=(
   'azure-cli'
 )
