@@ -41,7 +41,7 @@ readonly extensions=(
 
 entry="deb [arch=$arch signed-by=$keyring] $repo $release $component"
 
-sudo bash -c "echo ${entry@Q} >>${list@Q}"
+grep --fixed-strings --line-regexp "$entry" "$list" || sudo bash -c "echo ${entry@Q} >>${list@Q}"
 
 sudo apt-get update
 

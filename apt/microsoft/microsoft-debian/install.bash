@@ -26,22 +26,22 @@ readonly components=('main')
 
 readonly keyring='/usr/share/keyrings/microsoft.gpg'
 
-readonly source="deb [arch=$arch signed-by=$keyring] $repo $distro ${components[*]}"
+readonly entry="deb [arch=$arch signed-by=$keyring] $repo $distro ${components[*]}"
 
-readonly list="/etc/apt/sources.list.d/microsoft-debian.list"
+readonly list="/etc/apt/sources.list.d/microsoft.list"
 
-sudo bash -c "echo ${source@Q} >> ${list@Q}"
-
-sudo apt-get update
 readonly packages=(
-  dotnet-sdk-7.0
-  azure-functions-core-tools
+  'dotnet-sdk-7.0'
+  'azure-functions-core-tools'
 )
 
+grep --line-regexp --fixed-strings "$entry" "$list" || sudo bash -c "echo ${entry@Q} >>${list@Q}"
+
 sudo apt-get update
 
-dotnet --version
+sudo apt-get install --yes "${packages[@]}"
 
+dotnet --version
 func --version
 export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
 if ! grep --line-regexp --silent "export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1" ~/.bash_profile; then
