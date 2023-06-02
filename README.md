@@ -18,15 +18,5 @@ A eclectic userscript library for a brand-new kind of Linux distribution.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is licensed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/).
 
-## Error Codes
-
-Code | Description
-:-- | :--
-1 | program failure
-2 | package not found
-3 | package status unexpected
-4 | cannot delete keyring
-5 | fingerprint mismatch
-
 ## Kudos
 🕊️ *In Memoriam [Ian Murdock](https://www.debian.org/doc/manuals/project-history/manifesto.en.html)*
