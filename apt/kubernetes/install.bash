@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # REQ: Installs the Kubernetes repository. <eris 2023-06-04>
-# REQ: Installs kubelet, kubeadm, and kubectl. <>
+# REQ: Installs kubeadm and kubectl packages. <>
 
 # SEE: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/ <>
 
@@ -17,9 +17,19 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
+gpg --version
+
+readonly packages=(
+  'kubeadm'
+  'kubectl'
+)
+
 readonly keyserver='https://packages.cloud.google.com/apt/doc/apt-key.gpg'
 readonly keyring='/usr/share/keyrings/google-cloud.gpg'
-readonly fingerprint='A362B822F6DEDC652817EA46B53DC80D13EDEF05'
+readonly fingerprints=(
+  'A362B822F6DEDC652817EA46B53DC80D13EDEF05'
+  '54A647F9048D5688D7DA2ABE6A030B21BA07F4FB'
+)
 
 arch="$(dpkg --print-architecture)"
 readonly arch
@@ -34,11 +44,9 @@ readonly list='/etc/apt/sources.list.d/kubernetes.list'
 
 readonly entry="deb [arch=${arch} signed-by=$keyring] ${repo} ${distro} ${component}"
 
-gpg --version
 
 sudo gpg --no-default-keyring \
   --keyring "$keyring" --keyserver "$keyserver" --recv-keys "$fingerprint"
-
 
 sudo bash -c "echo ${entry@Q} > ${list@Q}"
 
