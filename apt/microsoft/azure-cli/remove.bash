@@ -17,8 +17,13 @@ set -o xtrace
 readonly keyring='/usr/share/keyrings/microsoft.gpg'
 readonly list='/etc/apt/sources.list.d/microsoft.list'
 readonly repo='https://packages.microsoft.com/repos/azure-cli/'
+readonly package='azure-cli'
 
 sudo sed -i "\|$repo|d" "$list"
+
+sudo apt-get remove --yes "$package"
+
+[ -s "$keyring" ] || sudo rm -f "$keyring"
 
 [ -s "$list" ] || sudo rm -f "$list"
 

@@ -18,7 +18,14 @@ readonly keyring='/usr/share/keyrings/microsoft.gpg'
 readonly list='/etc/apt/sources.list.d/microsoft.list'
 readonly repo='https://packages.microsoft.com/repos/microsoft-debian-bullseye-prod/'
 
+readonly packages=(
+  'dotnet-sdk-7.0'
+  'azure-functions-core-tools'
+)
+
 sudo sed -i "\|$repo|d" "$list"
+
+sudo apt-get remove --yes "${packages[@]}"
 
 [ -s "$list" ] || sudo rm -f "$list"
 

@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the google signing key . <2023-04-21>
-# REQ: Creates the kubernetes source entry. <>
+# REQ: Installs the Kubernetes repository. <eris 2023-06-04>
+# REQ: Installs kubelet, kubeadm, and kubectl. <>
 
-# SEE: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-using-native-package-management <>
+# SEE: https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/ <>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -17,36 +17,30 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-declare -A key
-key[server]=https://packages.cloud.google.com/apt/doc/apt-key.gpg
-key[ring]=/usr/share/keyrings/google-cloud.gpg
-key[fingerprint]=A362B822F6DEDC652817EA46B53DC80D13EDEF05
+readonly keyserver='https://packages.cloud.google.com/apt/doc/apt-key.gpg'
+readonly keyring='/usr/share/keyrings/google-cloud.gpg'
+readonly fingerprint='A362B822F6DEDC652817EA46B53DC80D13EDEF05'
 
-declare -A src
-src[archive_type]=deb
-src[architecture]=$(dpkg --print-architecture)
-src[signed-by]=${key[ring]}
-src[repository_url]=https://apt.kubernetes.io/
-src[distribution]=kubernetes-xenial
-src[component]=main
+arch="$(dpkg --print-architecture)"
+readonly arch
 
-readonly list=/etc/apt/sources.list.d/kubernetes.list
+readonly repo='https://apt.kubernetes.io/'
+
+# PORT: No bookworm support. <eris 2023-06-02>
+readonly distro='kubernetes-stretch'
+readonly component='main'
+
+readonly list='/etc/apt/sources.list.d/kubernetes.list'
+
+readonly entry="deb [arch=${arch} signed-by=$keyring] ${repo} ${distro} ${component}"
 
 gpg --version
 
-sudo gpg \
-  --no-default-keyring                     \
-  --keyring            ${key[ring]}        \
-  --keyserver          ${key[server]}      \
-  --recv-keys          ${key[fingerprint]}
+sudo gpg --no-default-keyring \
+  --keyring "$keyring" --keyserver "$keyserver" --recv-keys "$fingerprint"
 
-entry=${src[archive_type]}
-entry+=" [arch=${src[architecture]} signed-by=${src[signed-by]}]"
-entry+=" ${src[repository_url]}"
-entry+=" ${src[distribution]}"
-entry+=" ${src[component]}"
 
 sudo bash -c "echo ${entry@Q} > ${list@Q}"
 
 sudo apt-get update
-
+sudo apt-get install "${packages[@]}"
