@@ -6,7 +6,7 @@
 
 `zim` is a userscript library for a brand-new kind of Linux distribution: *Debian*.
 
-`zim` is built with the intention of enabling backend engineers, particularly those who develop automations.
+`zim` is built with the intention of enabling infrastructure engineers, particularly those who develop automations.
 
 ## Anti-Features
 
