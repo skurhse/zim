@@ -10,13 +10,12 @@
 
 ## Anti-Features
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;only validates script dependencies (it does not attempt to resolve them).
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isolates component operations into individual script files.
 
 ## Features
 `zim` targets [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;only validates script dependencies (it does not attempt to resolve them).
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;breaks down component operations into individual script files.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is idempotent.
 
