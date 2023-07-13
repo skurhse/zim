@@ -12,7 +12,7 @@
 
 `zim` only validates script dependencies; it does not attempt to resolve them.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isolates preliminary operations within individual script files (instead of handling them intelligently). This can sometimes result in a need for multiple scripts to be run in sequence to complete an installation task.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isolates shared contingent operations within individual script files (instead of handling them intelligently). This can sometimes result in a need for multiple scripts to be run in sequence to complete an installation task.
 
 ## Features
 `zim` is idempotent.
