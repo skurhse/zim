@@ -6,7 +6,7 @@
 A eclectic userscript library for a brand-new kind of Linux distribution.
 
 ## Features
-`zim` targets [Debian 12 Bookworm](https://www.debian.org/releases/bookworm/).
+`zim` targets [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;only validates script dependencies (it does not attempt to resolve them).
 
