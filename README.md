@@ -6,7 +6,7 @@
 
 `zim` is a userscript library for a brand-new kind of Linux distribution: [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seeks to help infrastructure engineers develop complex automations. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seeks to help infrastructure engineers develop automations with complex tooling. 
 
 ## Anti-Features
 
