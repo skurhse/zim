@@ -15,9 +15,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isolates component operations into individual script files (instead of handling them intelligently).
 
 ## Features
-`zim` targets [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is idempotent.
+`zim` is idempotent.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags.
 
