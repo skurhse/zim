@@ -4,7 +4,7 @@
 
 # 📚 Mission
 
-`zim` is a userscript library for a brand-new kind of Linux distribution: *Debian*.
+`zim` is a userscript library for a brand-new kind of Linux distribution: [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is built with the intention of enabling infrastructure engineers, particularly those who develop automations.
 
