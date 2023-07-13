@@ -2,9 +2,15 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
-`zim` is a userscript library for a brand-new kind of Linux distribution.
+# Mission 📚
 
-`zim` is meant to enable backend engineers who develop automations.
+`zim` is a userscript library for a brand-new kind of Linux distribution: Debian.
+
+`zim` is built with the intention of enabling backend engineers, particularly those who develop automations.
+
+## Anti-Features
+
+
 ## Features
 `zim` targets [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
 
