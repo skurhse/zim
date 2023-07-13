@@ -14,6 +14,8 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compartmentalizes operations with shared contigencies into individual script files. This can sometimes result in a need for multiple scripts to be run in sequence to complete an installation task.
 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;granularity is evaluated lazily based on need.
+
 ## Features
 `zim` is idempotent.
 
