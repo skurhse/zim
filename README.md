@@ -12,7 +12,7 @@
 
 `zim` only validates script dependencies (it does not attempt to resolve them).
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isolates component operations into individual script files (instead of handling them intelligently).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isolates certain component operations into individual script files (instead of handling them intelligently).
 
 ## Features
 `zim` is idempotent.
