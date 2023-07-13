@@ -2,8 +2,7 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
-# zim 📚
-A userscript library for a brand-new kind of Linux distribution.
+`zim` is a userscript library for a brand-new kind of Linux distribution.
 
 `zim` is meant to enable backend engineers who develop automations. A particular emphasis is given to cloud capabilities due to the inherent biases of zim's author.
 
