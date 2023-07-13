@@ -10,7 +10,7 @@
 
 ## Anti-Features
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;only validates script dependencies (it does not attempt to resolve them).
+`zim` only validates script dependencies (it does not attempt to resolve them).
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isolates component operations into individual script files.
 
