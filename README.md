@@ -4,7 +4,7 @@
 
 # 📚 Mission
 
-`zim` is a userscript library for a brand-new kind of Linux distribution: Debian.
+`zim` is a userscript library for a brand-new kind of Linux distribution: *Debian*.
 
 `zim` is built with the intention of enabling backend engineers, particularly those who develop automations.
 
