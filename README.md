@@ -10,14 +10,14 @@
 
 ## Anti-Features
 
-`zim` only validates script dependencies (it does not attempt to resolve them).
+`zim` only validates script dependencies; it does not attempt to resolve them.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isolates certain component operations into individual script files (instead of handling them intelligently).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isolates preliminary operations within individual script files (instead of handling them intelligently). This can sometimes result in a need for multiple scripts to be run in sequence to complete an installation task.
 
 ## Features
 `zim` is idempotent.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is reversible.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is reversible with validation.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags.
 
