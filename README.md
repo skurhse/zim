@@ -5,7 +5,7 @@
 # zim 📚
 A userscript library for a brand-new kind of Linux distribution.
 
-`zim` is meant to enable backend engineers for general-use, with an emphasis given to infrastructure engineering capabilities due to the inherent biases its author.
+`zim` is meant to enable backend engineers who develop automations. A particular emphasis is given to cloud infrastructure engineering capabilities due to the inherent biases zim's author.
 
 ## Features
 `zim` targets [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
