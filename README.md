@@ -12,7 +12,7 @@
 
 `zim` only validates script dependencies (it does not attempt to resolve them).
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isolates component operations into individual script files.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isolates component operations into individual script files (instead of handling).
 
 ## Features
 `zim` targets [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
