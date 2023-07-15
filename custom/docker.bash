@@ -5,7 +5,7 @@
 # SEE: https://docs.docker.com/engine/install/debian/#install-using-the-repository <>
 # SEE: https://docs.docker.com/engine/install/linux-postinstall/ <>
 
-# USAGE: exec custom/docker.bash <>
+# USG: exec custom/docker.bash <>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
