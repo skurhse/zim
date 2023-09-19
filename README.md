@@ -8,14 +8,6 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seeks to help infrastructure engineers develop automations with complex tooling. 
 
-## Anti-Features
-
-`zim` only validates script dependencies; it does not attempt to resolve them.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;compartmentalizes operations with shared contigencies into individual script files.
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;granularity is evaluated lazily based on need.
-
 ## Features
 `zim` is idempotent.
 
