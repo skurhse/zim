@@ -33,6 +33,7 @@ sudo apt-get install "${kde_packages[@]}"
 sudo apt-get install 'xrdp'
 
 declare -a packages
+packages+=('dnsutils')
 packages+=('htop')
 packages+=('ffmpeg')
 packages+=('gnupg2')
