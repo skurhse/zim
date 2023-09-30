@@ -2,7 +2,7 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
-# 📚 Mission
+# 📚 zim
 
 `zim` is a userscript library for a brand-new kind of Linux distribution: [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
 
