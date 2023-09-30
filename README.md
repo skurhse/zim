@@ -4,7 +4,7 @@
 
 # 📚 zim
 
-a userscript library for a brand-new kind of Linux distribution: [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
+a userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
 
 ## Features
 `zim` is idempotent.
