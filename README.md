@@ -6,7 +6,7 @@
 
 a userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
 
-## Features
+## features
 `zim` is idempotent.
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is reversible.
@@ -15,5 +15,5 @@ a userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags.
 
-## Kudos
+## kudos
 🕊️ *In Memoriam [Ian Murdock](https://www.debian.org/doc/manuals/project-history/manifesto.en.html)*
