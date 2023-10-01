@@ -21,9 +21,6 @@ call('plug#begin')
 -- SEE: https://github.com/carlsmedstad/vim-bicep <>
 plug('carlsmedstad/vim-bicep')
 
--- SEE: https://github.com/github/copilot.vim <>
-plug('github/copilot.vim')
-
 -- SEE: https://github.com/hashivim/vim-terraform <>
 plug('hashivim/vim-terraform')
 vim.g.terraform_align = 1
