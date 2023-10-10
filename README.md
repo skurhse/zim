@@ -4,7 +4,7 @@
 
 # 📚 zim
 
-a bash userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
+a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
 
 ## features
 `zim` is idempotent.
