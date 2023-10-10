@@ -35,6 +35,8 @@ a bash userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianT
   - [golang](
 - mongo
   - [mongodb](https://www.mongodb.com/docs/)
+- neovim
+  - [neovim](https://neovim.io/doc/)
 - openjs
   - [nodejs](https://nodejs.org/en/docs)
 - postgres
