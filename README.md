@@ -19,6 +19,7 @@ a bash userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianT
 
 - cncf
   - [helm](https://helm.sh/docs/)
+  - [kubernetes](https://kubernetes.io/docs/home/)
 - docker
   - [docker](https://docs.docker.com/)
 - microsoft
