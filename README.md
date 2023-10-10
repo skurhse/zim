@@ -32,7 +32,7 @@ a bash userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianT
    - [packer](https://developer.hashicorp.com/packer/docs)
    - [vault](https://developer.hashicorp.com/vault/docs)
 - google
-  - [golang](
+  - [golang](https://go.dev/doc/)
 - mongo
   - [mongodb](https://www.mongodb.com/docs/)
 - neovim
