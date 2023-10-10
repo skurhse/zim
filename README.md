@@ -36,6 +36,8 @@ a bash userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianT
   - [nodejs](https://nodejs.org/en/docs)
 - postgres
   - [postgres](https://www.postgresql.org/docs/)
+- redhat
+  - [podman](https://docs.podman.io/en/latest/)
 
 ## kudos
 *In Memoriam [Ian Murdock](https://www.debian.org/doc/manuals/project-history/manifesto.en.html)* 🕊️
