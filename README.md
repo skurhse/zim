@@ -20,6 +20,7 @@ a bash userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianT
 - cncf
   - [helm](https://helm.sh/docs/)
   - [kubernetes](https://kubernetes.io/docs/home/)
+  - [minikube](https://minikube.sigs.k8s.io/docs/)
 - docker
   - [docker](https://docs.docker.com/)
 - microsoft
@@ -30,6 +31,8 @@ a bash userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianT
    - [terraform](https://developer.hashicorp.com/terraform/docs)
    - [packer](https://developer.hashicorp.com/packer/docs)
    - [vault](https://developer.hashicorp.com/vault/docs)
+- google
+  - [golang](
 - mongo
   - [mongodb](https://www.mongodb.com/docs/)
 - openjs
