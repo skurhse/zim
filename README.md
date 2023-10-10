@@ -15,7 +15,7 @@ a bash userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianT
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags.
 
-## supported softwares
+## softwares
 
 - docker
   - [docker](https://docs.docker.com/)
