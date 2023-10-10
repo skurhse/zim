@@ -37,14 +37,16 @@ a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/Debia
   - [mongodb](https://www.mongodb.com/docs/)
 - neovim
   - [neovim](https://neovim.io/doc/)
+  - python
+    - [black](https://black.readthedocs.io/en/stable/)
+    - [python-lsp-server](https://github.com/python-lsp/python-lsp-server)
+    - [python-lsp-server-black](https://github.com/python-lsp/python-lsp-black) (TODO) 
 - openbsd
   - [openssh](https://www.openssh.com/manual.html)
 - openjs
   - [nodejs](https://nodejs.org/en/docs)
 - postgres
   - [postgres](https://www.postgresql.org/docs/)
-- python
-  - [black](https://black.readthedocs.io/en/stable/)
 - redhat
   - [podman](https://docs.podman.io/en/latest/)
 
