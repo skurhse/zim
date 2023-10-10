@@ -33,7 +33,9 @@ a bash userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianT
 - mongo
   - [mongodb](https://www.mongodb.com/docs/)
 - openjs
-  - nodejs (https://nodejs.org/en/docs)
+  - [nodejs](https://nodejs.org/en/docs)
+- postgres
+  - [postgres](https://www.postgresql.org/docs/)
 
 ## kudos
 *In Memoriam [Ian Murdock](https://www.debian.org/doc/manuals/project-history/manifesto.en.html)* 🕊️
