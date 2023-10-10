@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# REQ: Removes the .NET SDK and Azure Functions Core Tools. <eris 2023-06-01>
+# REQ: Removes the .NET SDK. <eris rbt 2023-10-09>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -20,7 +20,6 @@ readonly repo='https://packages.microsoft.com/repos/microsoft-debian-bullseye-pr
 
 readonly packages=(
   'dotnet-sdk-7.0'
-  'azure-functions-core-tools'
 )
 
 sudo sed -i "\|$repo|d" "$list"

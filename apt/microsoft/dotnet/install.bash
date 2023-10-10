@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the .NET SDK and Azure Functions Core Tools. <eris 2023-06-01>
+# REQ: Installs the .NET SDK. <rbt 2023-10-09>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
