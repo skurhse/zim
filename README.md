@@ -43,6 +43,8 @@ a bash userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianT
   - [nodejs](https://nodejs.org/en/docs)
 - postgres
   - [postgres](https://www.postgresql.org/docs/)
+- python
+  - [black](https://black.readthedocs.io/en/stable/)
 - redhat
   - [podman](https://docs.podman.io/en/latest/)
 
