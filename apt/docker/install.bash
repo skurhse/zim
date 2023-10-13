@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the Docker source entry, signing key & package. <rbt 2023-10-12>
-
 # SEE: https://docs.docker.com/engine/install/debian/ <>
-
-# NOTE: Requires gnupg. <>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
