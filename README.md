@@ -13,7 +13,7 @@ a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/Debia
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags.
 
-## softwares
+## software
 
 - cncf
   - [helm](https://helm.sh/docs/)
