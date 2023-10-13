@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 
+# REQ: Installs the Docker package suite. <>
+
 # SEE: https://docs.docker.com/engine/install/debian/ <>
 
-# This Source Code Form is subject to the terms of the Mozilla Public
-# License, v. 2.0. If a copy of the MPL was not distributed with this
-# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+# USAGE: exec apt/docker/install.bash <>
+
+# NOTE: The invoking shell's supplementary groups must be refreshed. <>
+# NOTE: To do so, call `exec sudo --preserve-env --user $USER bash` <>
 
 set +o braceexpand
 set -o errexit
@@ -49,4 +52,11 @@ sudo gpg --no-default-keyring --keyring "$keyring" \
 sudo bash -c "echo ${source@Q} > ${list@Q}"
 
 sudo apt update
+
+# CAVEAT: Group changes must precede installation. <>
+sudo groupadd --force -- docker
+sudo usermod --append --groups docker -- $USER
+
 sudo apt-get install "${packages[@]}" 
+
+sudo --user $USER -- bash -c 'docker run hello-world'
