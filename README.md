@@ -41,7 +41,6 @@ a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/Debia
   - python
     - [black](https://black.readthedocs.io/en/stable/)
     - [python-lsp-server](https://github.com/python-lsp/python-lsp-server)
-    - [python-lsp-server-black](https://github.com/python-lsp/python-lsp-black) (TODO) 
 - openbsd
   - [openssh](https://www.openssh.com/manual.html)
 - openjs
