@@ -1,0 +1,1 @@
+- reinstate azure functions core tools
