@@ -51,4 +51,4 @@ a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/Debia
   - [podman](https://docs.podman.io/en/latest/)
 
 ## kudos
-*In Memoriam [Ian Murdock](https://www.debian.org/doc/manuals/project-history/manifesto.en.html) & [Lucy Wayland](https://aardvarkoffnord.wordpress.com/2016/11/12/diversity-and-inclusion-debian-redux/)* 🕊️
+*In Memoriam [Lucy Wayland](https://aardvarkoffnord.wordpress.com/2016/11/12/diversity-and-inclusion-debian-redux/)* & [Ian Murdock](https://www.debian.org/doc/manuals/project-history/manifesto.en.html) 🕊️
