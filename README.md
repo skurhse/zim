@@ -29,7 +29,6 @@ a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/Debia
   - [dotnet sdk](https://learn.microsoft.com/en-us/dotnet/)
   - [github cli](https://cli.github.com/manual/)
 - hashicorp
-   - [cdktf](https://developer.hashicorp.com/terraform/cdktf)
    - [packer](https://developer.hashicorp.com/packer/docs)
    - [terraform](https://developer.hashicorp.com/terraform/docs)
    - [vault](https://developer.hashicorp.com/vault/docs)
