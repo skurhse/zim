@@ -22,7 +22,10 @@ a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/Debia
   - [kubernetes](https://kubernetes.io/docs/home/)
   - [minikube](https://minikube.sigs.k8s.io/docs/)
 - docker
-  - [docker](https://docs.docker.com/)
+  - [docker-build](https://docs.docker.com/build/)
+  - [docker-cli](https://docs.docker.com/engine/reference/commandline/cli/)
+  - [docker compose](https://docs.docker.com/compose/)
+  - [docker-engine](https://docs.docker.com/engine/)
 - microsoft
   - [azure cli](https://learn.microsoft.com/en-us/cli/azure/)
   - [dotnet sdk](https://learn.microsoft.com/en-us/dotnet/)
