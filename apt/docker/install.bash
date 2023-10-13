@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the Docker package suite. <>
+# REQ: Installs the Docker package suite. <rbt 2023-10-12>
 
 # SEE: https://docs.docker.com/engine/install/debian/ <>
 
-# USAGE: exec apt/docker/install.bash <>
-
-# NOTE: The invoking shell's supplementary groups must be refreshed. <>
-# NOTE: To do so, call `exec sudo --preserve-env --user $USER bash` <>
+# NOTE:
+#   The invoking shell's supplementary groups must be refreshed.
+#   To do so, call `exec sudo --preserve-env --user $USER bash`.
+#   `newgrp` is not sufficient, as it only effects real and effective groups. <>
 
 set +o braceexpand
 set -o errexit
@@ -53,7 +53,7 @@ sudo bash -c "echo ${source@Q} > ${list@Q}"
 
 sudo apt update
 
-# CAVEAT: Group changes must precede installation. <>
+# CAVEAT: Group changes must precede installation. <2023-10-12>
 sudo groupadd --force -- docker
 sudo usermod --append --groups docker -- $USER
 
