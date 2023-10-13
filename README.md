@@ -11,8 +11,6 @@ a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/Debia
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is reversible.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is licensed under [MPL 2.0](https://www.mozilla.org/en-US/MPL/2.0/).
-
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags.
 
 ## softwares
