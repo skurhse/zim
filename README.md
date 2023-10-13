@@ -33,7 +33,6 @@ a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/Debia
    - [packer](https://developer.hashicorp.com/packer/docs)
    - [terraform](https://developer.hashicorp.com/terraform/docs)
    - [vault](https://developer.hashicorp.com/vault/docs)
-
 - google
   - [golang](https://go.dev/doc/)
 - mongo
