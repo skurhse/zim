@@ -1,1 +1,2 @@
 - reinstate azure functions core tools
+- add python-lsp-server-black
