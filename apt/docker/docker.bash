@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the Docker APT repository and signing key. <skr 2023-03-31>
+# REQ: Installs the Docker source entry, signing key & package. <rbt 2023-10-12>
 
 # SEE: https://docs.docker.com/engine/install/debian/ <>
+
+# NOTE: Requires gnupg. <>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -16,51 +18,39 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-readonly dependencies=('gnupg')
+arch=$(dpkg --print-architecture)
 
-for package in "${dependencies[@]}"; do
-  if status=$(dpkg-query --show --showformat '${db:Status-Status}' "$package"); then
-    if [[ "$status" != 'installed' ]]; then
-      echo "Unexpected status $status for package $package." >&2
-      exit 3  
-    fi
-  else
-    if [[ $? -eq 1 ]]; then
-      echo "Package $package not found." >&2
-      echo "To install:" >&2
-      echo "  sudo apt-get install $package" >&2
-      exit 2
-    else
-      echo "dpkg-query failed with status $status." >&2
-      exit 1
-    fi
-  fi
-done
+repo='https://download.docker.com/linux/debian/'
+list='/etc/apt/sources.list.d/docker.list'
+keyring='/usr/share/keyrings/docker-archive-keyring.gpg'
 
-readonly list='/etc/apt/sources.list.d/docker.list'
-
-readonly archive_type='deb'
-architecture=$(dpkg --print-architecture)
-readonly architecture
-readonly signed_by='/usr/share/keyrings/docker-archive-keyring.gpg'
-readonly repository_url='https://download.docker.com/linux/debian/'
 source /etc/os-release
-distribution="$VERSION_CODENAME"
-readonly distribution
-readonly component='stable'
+distro="$VERSION_CODENAME"
 
-readonly keyserver='https://download.docker.com/linux/debian/gpg'
-readonly keyring='/usr/share/keyrings/docker-archive-keyring.gpg'
-readonly fingerprint='9DC858229FC7DD38854AE2D88D81803C0EBFCD88'
+# NOBUG: No trixie support. <2023-10-12>
+[[ $distro == 'trixie' ]] && distro='bookworm'
 
-sudo gpg \
-  --no-default-keyring                \
-  --keyring            "$keyring"     \
-  --keyserver          "$keyserver"   \
-  --recv-keys          "$fingerprint"
+# NOBUG: Inheriting a semantic error from Docker team <>
+# SEE: https://wiki.debian.org/SourcesList#Component <>
+component='stable' 
 
-readonly source="${archive_type} [arch=${architecture} signed-by=${signed_by}] ${repository_url} ${distribution} ${component}"
+source="deb [arch=$arch signed-by=$keyring] $repo $distro $component"
+
+keyserver='https://download.docker.com/linux/debian/gpg'
+fingerprint='9DC858229FC7DD38854AE2D88D81803C0EBFCD88'
+
+packages=(
+  'docker-ce'
+  'docker-ce-cli'
+  'containerd.io'
+  'docker-buildx-plugin'
+  'docker-compose-plugin'
+)
+
+sudo gpg --no-default-keyring --keyring "$keyring" \
+  --keyserver "$keyserver" --recv-keys "$fingerprint"
 
 sudo bash -c "echo ${source@Q} > ${list@Q}"
 
 sudo apt update
+sudo apt-get install "${packages[@]}" 
