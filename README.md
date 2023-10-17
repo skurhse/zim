@@ -15,40 +15,44 @@ a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/Debia
 
 ## software
 
-- cncf
-  - [helm](https://helm.sh/docs/)
-  - [kubernetes](https://kubernetes.io/docs/home/)
-  - [minikube](https://minikube.sigs.k8s.io/docs/)
-- docker
-  - [docker-build](https://docs.docker.com/build/)
-  - [docker-cli](https://docs.docker.com/engine/reference/commandline/cli/)
-  - [docker compose](https://docs.docker.com/compose/)
-  - [docker-engine](https://docs.docker.com/engine/)
-- microsoft
-  - [azure cli](https://learn.microsoft.com/en-us/cli/azure/)
-  - [dotnet sdk](https://learn.microsoft.com/en-us/dotnet/)
-  - [github cli](https://cli.github.com/manual/)
-- hashicorp
-   - [packer](https://developer.hashicorp.com/packer/docs)
-   - [terraform](https://developer.hashicorp.com/terraform/docs)
-   - [vault](https://developer.hashicorp.com/vault/docs)
-- google
+- apt
+  - docker
+    - [docker-build](https://docs.docker.com/build/)
+    - [docker-cli](https://docs.docker.com/engine/reference/commandline/cli/)
+    - [docker compose](https://docs.docker.com/compose/)
+    - [docker-engine](https://docs.docker.com/engine/)
+  - github-cli
+    - [github cli](https://cli.github.com/manual/)
+  - hashicorp
+    - [packer](https://developer.hashicorp.com/packer/docs)
+    - [terraform](https://developer.hashicorp.com/terraform/docs)
+    - [vault](https://developer.hashicorp.com/vault/docs)
+  - helm
+    - [helm](https://helm.sh/docs/)
+  - kubernetes
+    - [kubernetes](https://kubernetes.io/docs/home/)
+  - microsoft
+    - [azure cli](https://learn.microsoft.com/en-us/cli/azure/)
+    - [dotnet sdk](https://learn.microsoft.com/en-us/dotnet/)
+  - mongodb
+    - [mongodb](https://www.mongodb.com/docs/)
+  - openjs
+    - [nodejs](https://nodejs.org/en/docs)
+  - podman
+    - [podman](https://docs.podman.io/en/latest/)
+  - postgres
+    - [postgres](https://www.postgresql.org/docs/)
+- custom
   - [golang](https://go.dev/doc/)
-- mongo
-  - [mongodb](https://www.mongodb.com/docs/)
-- neovim
-  - [neovim](https://neovim.io/doc/)
-  - python
-    - [black](https://black.readthedocs.io/en/stable/)
-    - [python-lsp-server](https://github.com/python-lsp/python-lsp-server)
-- openbsd
-  - [openssh](https://www.openssh.com/manual.html)
-- openjs
-  - [nodejs](https://nodejs.org/en/docs)
-- postgres
-  - [postgres](https://www.postgresql.org/docs/)
-- redhat
-  - [podman](https://docs.podman.io/en/latest/)
+  - [minikube](https://minikube.sigs.k8s.io/docs/)
+- utils
+  - neovim
+    - [neovim](https://neovim.io/doc/)
+    - python
+      - [black](https://black.readthedocs.io/en/stable/)
+      - [python-lsp-server](https://github.com/python-lsp/python-lsp-server)
+  - openbsd
+    - [openssh](https://www.openssh.com/manual.html)
 
 ## kudos
 *In Memoriam [Lucy Wayland](https://aardvarkoffnord.wordpress.com/2016/11/12/diversity-and-inclusion-debian-redux/)* & [Ian Murdock](https://www.debian.org/doc/manuals/project-history/manifesto.en.html) 🕊️
