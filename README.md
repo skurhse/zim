@@ -19,7 +19,7 @@ a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/Debia
   - baltocdn.com
     - [Helm](https://helm.sh/docs/)
   - docker.com
-    - [BuildKit](https://docs.docker.com/build/buildkit/))
+    - [BuildKit](https://docs.docker.com/build/buildkit/)
     - [Docker CLI](https://docs.docker.com/engine/reference/commandline/cli/)
     - [Docker Compose](https://docs.docker.com/compose/)
     - [Docker Engine](https://docs.docker.com/engine/)
