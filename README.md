@@ -16,32 +16,30 @@ a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/Debia
 ## software
 
 - apt
-  - docker
+  - baltocdn.com
+    - [helm](https://helm.sh/docs/)
+  - docker.com
     - [docker-build](https://docs.docker.com/build/)
     - [docker-cli](https://docs.docker.com/engine/reference/commandline/cli/)
     - [docker compose](https://docs.docker.com/compose/)
     - [docker-engine](https://docs.docker.com/engine/)
-  - github-cli
+  - github.com
     - [github cli](https://cli.github.com/manual/)
-  - hashicorp
+  - hashicorp.com
     - [packer](https://developer.hashicorp.com/packer/docs)
     - [terraform](https://developer.hashicorp.com/terraform/docs)
     - [vault](https://developer.hashicorp.com/vault/docs)
-  - helm
-    - [helm](https://helm.sh/docs/)
-  - kubernetes
+  - kubernetes.io
     - [kubernetes](https://kubernetes.io/docs/home/)
-  - microsoft
+  - microsoft.com
     - [azure cli](https://learn.microsoft.com/en-us/cli/azure/)
     - [dotnet sdk](https://learn.microsoft.com/en-us/dotnet/)
-  - mongodb
+  - mongodb.org
     - [mongodb](https://www.mongodb.com/docs/)
-  - openjs
+  - nodesource.com
     - [nodejs](https://nodejs.org/en/docs)
-  - podman
+  - opensuse.org
     - [podman](https://docs.podman.io/en/latest/)
-  - postgres
-    - [postgres](https://www.postgresql.org/docs/)
 - custom
   - [golang](https://go.dev/doc/)
   - [minikube](https://minikube.sigs.k8s.io/docs/)
