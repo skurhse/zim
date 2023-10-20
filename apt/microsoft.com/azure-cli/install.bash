@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the Azure CLI. <eris 2023-06-01>
+# REQ: Installs the Azure CLI:
+# 1. Imports the Microsoft signing key 
+# 2. Writes the source list
+# 3. Installs the package 
+# 4. Install extensions
+# <rbt 2023-10-20>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -14,38 +19,40 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-awk --version
-gpg --version
+keyring=/usr/share/keyrings/microsoft.gpg
+keyserver=https://packages.microsoft.com/keys/microsoft.asc
+key=BC528686B50D79E339D3721CEB3E94ADBE1229CF
+
+repo=https://packages.microsoft.com/repos/azure-cli/
+component=main
+list=/etc/apt/sources.list.d/microsoft-azure-cli.list
+package=azure-cli
+extensions=(
+  aks-preview
+  k8s-configuration
+  k8s-extension
+)
+
+sudo gpg --no-default-keyring --keyring "$keyring" \
+  --keyserver "$keyserver" --recv-keys "$key"
 
 arch=$(dpkg --print-architecture)
-readonly arch
 
-# PORT: Bookworm not yet supported. <eris 2023-05-29>
-# distro=$(lsb_release -cs)
-readonly distro='bullseye'
+distro=$(lsb_release --short --codename)
 
-readonly keyring='/usr/share/keyrings/microsoft.gpg'
-readonly fingerprint='BC528686B50D79E339D3721CEB3E94ADBE1229CF'
-
-readonly repo='https://packages.microsoft.com/repos/azure-cli/'
-readonly component='main'
-
-readonly list='/etc/apt/sources.list.d/microsoft.list'
-readonly packages=('azure-cli')
-
-readonly extensions=(
-  'aks-preview'
-)
+# PORT: Trixie is not yet supported. <rbt 2023-10-20>
+[[ $distro == trixie ]] && distro=bookworm
 
 entry="deb [arch=$arch signed-by=$keyring] $repo $distro $component"
 
-grep --fixed-strings --line-regexp "$entry" "$list" || sudo bash -c "echo ${entry@Q} >>${list@Q}"
+sudo bash -c "echo ${entry@Q} >${list@Q}"
 
 sudo apt-get update
-sudo apt-get install --yes "${packages[@]}"
+sudo apt-get install --yes "$package"
 
 az upgrade --all
 
-for extension in "${extensions[@]}"; do
+for extension in "${extensions[@]}"
+do
   az extension add --upgrade --name "${extension}" --yes
 done

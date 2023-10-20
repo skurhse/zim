@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-# REQ: Removes the Azure CLI. <eris 2023-06-01>
+# REQ: Removes the Azure CLI:
+# 1. Remove package
+# 2. Remove source list
+# 3. Remove signing key if unused
+# <rbt 2023-10-20>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -14,17 +18,29 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-readonly keyring='/usr/share/keyrings/microsoft.gpg'
-readonly list='/etc/apt/sources.list.d/microsoft.list'
-readonly repo='https://packages.microsoft.com/repos/azure-cli/'
-readonly package='azure-cli'
+keyring=/usr/share/keyrings/microsoft.gpg
+keyserver=https://packages.microsoft.com/keys/microsoft.asc
+key=BC528686B50D79E339D3721CEB3E94ADBE1229CF
 
-sudo sed -i "\|$repo|d" "$list"
+repo=https://packages.microsoft.com/repos/azure-cli/
+component=main
+mask=/etc/apt/sources.list.d/microsoft-
+list="${mask}azure-cli.list"
+package=azure-cli
 
-sudo apt-get remove --yes "$package"
+sudo gpg --no-default-keyring --keyring "$keyring" \
+  --keyserver "$keyserver" --recv-keys "$key"
 
-[ -s "$keyring" ] || sudo rm -f "$keyring"
+arch=$(dpkg --print-architecture)
 
-[ -s "$list" ] || sudo rm -f "$list"
+# PORT: Trixie not yet supported. <rbt 2023-10-20>
+distro=$(lsb_release --short --codename)
+[[ $distro == trixie ]] && distro=bookworm
 
-sudo apt-get update
+entry="deb [arch=$arch signed-by=$keyring] $repo $distro $component"
+
+sudo bash -c "echo ${entry@Q} >${list@Q}"
+
+sudo apt-get remove --yes "${packages[@]}"
+sudo rm -f "$list"
+compgen -G "$mask*" || sudo rm -f "$keyring"
