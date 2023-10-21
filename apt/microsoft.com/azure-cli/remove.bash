@@ -19,28 +19,9 @@ set -o pipefail
 set -o xtrace
 
 keyring=/usr/share/keyrings/microsoft.gpg
-keyserver=https://packages.microsoft.com/keys/microsoft.asc
-key=BC528686B50D79E339D3721CEB3E94ADBE1229CF
-
-repo=https://packages.microsoft.com/repos/azure-cli/
-component=main
-mask=/etc/apt/sources.list.d/microsoft-
-list="${mask}azure-cli.list"
+list=/etc/apt/sources.list.d/azure-cli.microsoft.list
 package=azure-cli
 
-sudo gpg --no-default-keyring --keyring "$keyring" \
-  --keyserver "$keyserver" --recv-keys "$key"
-
-arch=$(dpkg --print-architecture)
-
-# PORT: Trixie not yet supported. <rbt 2023-10-20>
-distro=$(lsb_release --short --codename)
-[[ $distro == trixie ]] && distro=bookworm
-
-entry="deb [arch=$arch signed-by=$keyring] $repo $distro $component"
-
-sudo bash -c "echo ${entry@Q} >${list@Q}"
-
-sudo apt-get remove --yes "${packages[@]}"
+sudo apt-get remove --yes "$package"
 sudo rm -f "$list"
-compgen -G "$mask*" || sudo rm -f "$keyring"
+compgen -G "${list/azure-cli/*}" || sudo rm -f "$keyring"

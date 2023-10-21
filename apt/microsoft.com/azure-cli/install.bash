@@ -25,7 +25,7 @@ key=BC528686B50D79E339D3721CEB3E94ADBE1229CF
 
 repo=https://packages.microsoft.com/repos/azure-cli/
 component=main
-list=/etc/apt/sources.list.d/microsoft-azure-cli.list
+list=/etc/apt/sources.list.d/azure-cli.microsoft.list
 package=azure-cli
 extensions=(
   aks-preview
@@ -50,9 +50,8 @@ sudo bash -c "echo ${entry@Q} >${list@Q}"
 sudo apt-get update
 sudo apt-get install --yes "$package"
 
-az upgrade --all
+az version
 
-for extension in "${extensions[@]}"
-do
+for extension in "${extensions[@]}"; do
   az extension add --upgrade --name "${extension}" --yes
 done

@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-# REQ: Removes the .NET SDK. <eris rbt 2023-10-09>
+# REQ: Removes the .NET SDK.
+# 1. Remove package
+# 2. Remove source list
+# 3. Remove signing key if unused
+# <rbt 2023-10-20>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -14,18 +18,13 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-readonly keyring='/usr/share/keyrings/microsoft.gpg'
-readonly list='/etc/apt/sources.list.d/microsoft.list'
-readonly repo='https://packages.microsoft.com/repos/microsoft-debian-bullseye-prod/'
+keyring=/usr/share/keyrings/microsoft.gpg
+list=/etc/apt/sources.list.d/microsoft.list
+package=dotnet-sdk-7.0
 
-readonly packages=(
-  'dotnet-sdk-7.0'
-)
+sudo apt-get remove --yes "$package"
 
 sudo sed -i "\|$repo|d" "$list"
-
-sudo apt-get remove --yes "${packages[@]}"
-
-[ -s "$list" ] || sudo rm -f "$list"
-
 sudo apt-get update
+
+[ -s "$list" ] || sudo rm -f "$list" "$keyring"

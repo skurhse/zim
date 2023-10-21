@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the .NET SDK. <rbt 2023-10-09>
+# REQ: Installs the .NET SDK:
+# 1. Imports the Microsoft signing key
+# 2. Writes an entry to the Microsoft source list
+# 3. Installs the package
+# <rbt 2023-10-20>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -15,34 +19,28 @@ set -o pipefail
 set -o xtrace
 
 arch=$(dpkg --print-architecture)
-readonly arch
 
-readonly repo='https://packages.microsoft.com/repos/microsoft-debian-bullseye-prod/'
+# PORT: Trixie not yet supported. <rbt 2023-10-20>
+distro=$(lsb_release --short --codename)
+[[ $distro == trixie ]] && distro=bookworm
 
-# PORT: Bookworm not yet supported. <eris 2023-05-27>
-readonly distro='bullseye'
-readonly components=('main')
+keyring=/usr/share/keyrings/microsoft.gpg
+keyserver=https://packages.microsoft.com/keys/microsoft.asc
+key=BC528686B50D79E339D3721CEB3E94ADBE1229CF
 
-readonly keyring='/usr/share/keyrings/microsoft.gpg'
+repo=https://packages.microsoft.com/repos/microsoft-debian-bookworm-prod/
+component=main
+entry="deb [arch=$arch signed-by=$keyring] $repo $distro $component"
+list=/etc/apt/sources.list.d/microsoft.list
+package=dotnet-sdk-7.0
 
-readonly entry="deb [arch=$arch signed-by=$keyring] $repo $distro ${components[*]}"
+sudo gpg --no-default-keyring --keyring "$keyring" \
+  --keyserver "$keyserver" --recv-keys "$key"
 
-readonly list="/etc/apt/sources.list.d/microsoft.list"
-
-readonly packages=(
-  'dotnet-sdk-7.0'
-  'azure-functions-core-tools'
-)
-
-grep --line-regexp --fixed-strings "$entry" "$list" || sudo bash -c "echo ${entry@Q} >>${list@Q}"
+[[ -f "$list" ]] && sudo sed -i "\|$repo|d" "$list"
+sudo bash -c "echo ${entry@Q} >>${list@Q}"
 
 sudo apt-get update
-
-sudo apt-get install --yes "${packages[@]}"
+sudo apt-get install --yes "$package"
 
 dotnet --version
-func --version
-export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1
-if ! grep --line-regexp --silent "export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1" ~/.bash_profile; then
-  echo "export FUNCTIONS_CORE_TOOLS_TELEMETRY_OPTOUT=1" >> ~/.bash_profile
-fi
