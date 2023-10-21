@@ -2,7 +2,7 @@
 
 # REQ: Installs the .NET SDK:
 # 1. Imports the Microsoft signing key
-# 2. Writes an entry to the Microsoft source list
+# 2. Writes the source list
 # 3. Installs the package
 # <rbt 2023-10-20>
 
@@ -30,15 +30,16 @@ key=BC528686B50D79E339D3721CEB3E94ADBE1229CF
 
 repo=https://packages.microsoft.com/repos/microsoft-debian-bookworm-prod/
 component=main
-entry="deb [arch=$arch signed-by=$keyring] $repo $distro $component"
-list=/etc/apt/sources.list.d/microsoft.list
+
+list=/etc/apt/sources.list.d/dotnet.microsoft.list
+
 package=dotnet-sdk-7.0
 
+entry="deb [arch=$arch signed-by=$keyring] $repo $distro $component"
 sudo gpg --no-default-keyring --keyring "$keyring" \
   --keyserver "$keyserver" --recv-keys "$key"
 
-[[ -f "$list" ]] && sudo sed -i "\|$repo|d" "$list"
-sudo bash -c "echo ${entry@Q} >>${list@Q}"
+sudo bash -c "echo ${entry@Q} >${list@Q}"
 
 sudo apt-get update
 sudo apt-get install --yes "$package"

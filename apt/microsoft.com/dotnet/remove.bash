@@ -19,12 +19,14 @@ set -o pipefail
 set -o xtrace
 
 keyring=/usr/share/keyrings/microsoft.gpg
-list=/etc/apt/sources.list.d/microsoft.list
+
+list=/etc/apt/sources.list.d/dotnet.microsoft.list
+
 package=dotnet-sdk-7.0
 
 sudo apt-get remove --yes "$package"
 
-sudo sed -i "\|$repo|d" "$list"
+sudo rm -f "$list"
 sudo apt-get update
 
-[ -s "$list" ] || sudo rm -f "$list" "$keyring"
+compgen -G "${list/$package/*}" || sudo rm -f "$keyring"

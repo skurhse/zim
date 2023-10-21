@@ -25,7 +25,9 @@ key=BC528686B50D79E339D3721CEB3E94ADBE1229CF
 
 repo=https://packages.microsoft.com/repos/azure-cli/
 component=main
+
 list=/etc/apt/sources.list.d/azure-cli.microsoft.list
+
 package=azure-cli
 extensions=(
   aks-preview

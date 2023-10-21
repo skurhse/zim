@@ -19,9 +19,14 @@ set -o pipefail
 set -o xtrace
 
 keyring=/usr/share/keyrings/microsoft.gpg
+
 list=/etc/apt/sources.list.d/azure-cli.microsoft.list
+
 package=azure-cli
 
 sudo apt-get remove --yes "$package"
+
 sudo rm -f "$list"
-compgen -G "${list/azure-cli/*}" || sudo rm -f "$keyring"
+sudo apt-get update
+
+compgen -G "${list/$package/*}" || rm -f "$keyring"
