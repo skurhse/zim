@@ -5,6 +5,7 @@
 local call = vim.call
 local cmd  = vim.cmd
 local set  = vim.o
+local gbl  = vim.g
 
 -- SEE: https://github.com/junegunn/vim-plug <>
 cmd [[
@@ -23,8 +24,8 @@ plug('carlsmedstad/vim-bicep')
 
 -- SEE: https://github.com/hashivim/vim-terraform <>
 plug('hashivim/vim-terraform')
-vim.g.terraform_align = 1
-vim.g.terraform_fmt_on_save = 1
+gbl.terraform_align = 1
+gbl.terraform_fmt_on_save = 1
 
 -- SEE: https://github.com/neovim/nvim-lspconfig <>
 plug('neovim/nvim-lspconfig')
@@ -43,9 +44,8 @@ plug('vim-crystal/vim-crystal')
 
 -- SEE: https://github.com/fatih/vim-go <>
 -- HACK: Using special syntax to workaround reserved word attribute. <>
-local vim_go_options = {}
-vim_go_options['do'] = ':GoUpdateBinaries'
-plug('fatih/vim-go', vim_go_options)
+plug('fatih/vim-go')
+gbl.go_def_mapping_enabled = 0
 
 -- SEE: https://github.com/hrsh7th/nvim-cmp <>
 plug('hrsh7th/cmp-nvim-lsp')
@@ -265,3 +265,6 @@ set.tabstop = 2
 set.shiftwidth = 2
 set.softtabstop = 2
 set.expandtab = true
+
+-- NOTE: Terminal-mode bindings <rbt>
+vim.api.nvim_set_keymap('t', '<Esc>', [[<C-\><C-n>]], { noremap = true })
