@@ -4,14 +4,14 @@
 
 # 📚 zim
 
-a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie).
+a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie)
 
 ## features
-`zim` is idempotent.
+`zim` is idempotent
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is reversible.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is reversible
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;is annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags
 
 ## software
 
