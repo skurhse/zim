@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# REQ: Installs a go binary release. <rabbit 2023-09-19>
+# REQ: Installs a go binary release. <rabbit 2023-11-24>
+
+# CAVEAT: Only supports amd64. <>
 
 # SEE: https://go.dev/doc/install <>
 
@@ -16,23 +18,22 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-arch=$(dpkg --print-architecture); readonly arch
+arch='amd64'
+version='1.21.4'
+checksum='73cac0215254d0c7d1241fa40837851f3b9a8a742d0b54714cbdfb3feaf8f0af'
 
-readonly version='1.21.1'
-readonly checksum='b3075ae1ce5dab85f89bc7905d1632de23ca196bd8336afd93fa97434cfa55ae'
+archive="go$version.linux-$arch.tar.gz"
 
-readonly archive="go$version.linux-$arch.tar.gz"
-readonly url="https://golang.org/dl/$archive"
+url="https://golang.org/dl/$archive"
 
-readonly path='/usr/local/go'
-readonly profile=~/'.bash_profile'
+path='/usr/local/go'
+profile=~/'.bash_profile'
 
-readonly export=(export "PATH=\"\$PATH:\"${path@Q}/bin")
+export=(export "PATH=\"\$PATH:\"${path@Q}/bin")
 
-dir=$(dirname "$path"); readonly dir
+dir=$(dirname "$path")
 
 cd /tmp
-wget --version
 wget --timestamping "$url"
 
 sha256sum --check <<<"$checksum $archive"
