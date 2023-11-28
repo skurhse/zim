@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the latest minikube package from the Google APIs CDN. <skr 2023-04-05>
+# REQ: Installs the latest minikube package from the Google CDN. <rbt 2023>
 
 # SEE: https://minikube.sigs.k8s.io/docs/start/ <>
 
@@ -16,21 +16,16 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-curl --version 
+arch=$(dpkg --print-architecture)
 
-declare -A pkg
-pkg[release]='latest'
-pkg[arch]=$(dpkg --print-architecture)
-pkg[url]="https://storage.googleapis.com/minikube/releases/${pkg[release]}/minikube_${pkg[release]}_${pkg[arch]}.deb"
-pkg[name]=${pkg[url]##*/}
+rel='latest'
+pkg="minikube_${rel}_${arch}.deb"
+url="https://storage.googleapis.com/minikube/releases/$rel/$pkg"
 
-function cleanup()
-{
-  rm -f /tmp/${pkg[name]}
-}
-trap cleanup INT TERM EXIT
+tmpdir='/tmp/'
 
-cd /tmp
-curl --location --remote-name -- ${pkg[url]}
-sudo dpkg -i ${pkg[name]}
+trap "rm -f ${tmpdir@Q}${pkg@Q}" INT TERM EXIT
 
+cd "$tmpdir"
+curl --location --remote-name -- "$url"
+sudo dpkg -i "$pkg"
