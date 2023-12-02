@@ -18,7 +18,7 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-keyring=/usr/share/keyrings/microsoft.gpg
+keyring=/etc/apt/keyrings/microsoft.gpg
 
 list=/etc/apt/sources.list.d/azure-cli.microsoft.list
 

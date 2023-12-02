@@ -29,7 +29,7 @@ readonly packages=(
 arch=$(dpkg --print-architecture)
 readonly arch
 
-readonly keyring='/usr/share/keyrings/hashicorp.gpg'
+readonly keyring='/etc/apt/keyrings/hashicorp.gpg'
 readonly repo="hashicorp"
 
 distro=$(lsb_release --short --codename)

@@ -13,7 +13,7 @@ set -o pipefail
 set -o xtrace
 
 list='/etc/apt/sources.list.d/docker.list'
-keyring='/usr/share/keyrings/docker-archive-keyring.gpg'
+keyring='/etc/apt/keyrings/docker-archive-keyring.gpg'
 
 packages=(
   'docker-ce'

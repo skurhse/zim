@@ -12,7 +12,7 @@ set -o nounset
 set -o xtrace
 
 readonly keyserver='https://cli.github.com/packages/githubcli-archive-keyring.gpg'
-readonly keyring='/usr/share/keyrings/githubcli-archive-keyring.gpg'
+readonly keyring='/etc/apt/keyrings/githubcli-archive-keyring.gpg'
 readonly fingerprint='2C6106201985B60E6C7AC87323F3D4EA75716059'
 
 arch="$(dpkg --print-architecture)"

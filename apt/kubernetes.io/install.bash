@@ -25,7 +25,7 @@ readonly packages=(
 )
 
 readonly keyserver='https://packages.cloud.google.com/apt/doc/apt-key.gpg'
-readonly keyring='/usr/share/keyrings/google-cloud.gpg'
+readonly keyring='/etc/apt/keyrings/google-cloud.gpg'
 readonly fingerprints=(
   'A362B822F6DEDC652817EA46B53DC80D13EDEF05'
   '54A647F9048D5688D7DA2ABE6A030B21BA07F4FB'

@@ -16,7 +16,7 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-keyring=/usr/share/keyrings/helm.gpg
+keyring=/etc/apt/keyrings/helm.gpg
 list=/etc/apt/sources.list.d/helm.list
 
 sudo apt-get remove --yes helm

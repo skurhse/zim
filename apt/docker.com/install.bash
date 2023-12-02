@@ -21,7 +21,7 @@ arch=$(dpkg --print-architecture)
 
 repo='https://download.docker.com/linux/debian/'
 list='/etc/apt/sources.list.d/docker.list'
-keyring='/usr/share/keyrings/docker-archive-keyring.gpg'
+keyring='/etc/apt/keyrings/docker-archive-keyring.gpg'
 
 source /etc/os-release
 distro="$VERSION_CODENAME"

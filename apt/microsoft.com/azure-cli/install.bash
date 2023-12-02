@@ -19,7 +19,7 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-keyring=/usr/share/keyrings/microsoft.gpg
+keyring=/etc/apt/keyrings/microsoft.gpg
 keyserver=https://packages.microsoft.com/keys/microsoft.asc
 key=BC528686B50D79E339D3721CEB3E94ADBE1229CF
 

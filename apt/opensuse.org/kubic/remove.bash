@@ -16,7 +16,7 @@ set -o xtrace
 
 # NOTE: Key must be dearmored and imported. <eris 2023-05-25>
 declare -A key
-key[ring]=/usr/share/keyrings/kubic.gpg
+key[ring]=/etc/apt/keyrings/kubic.gpg
 
 readonly list=/etc/apt/sources.list.d/kubic.list
 

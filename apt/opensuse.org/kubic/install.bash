@@ -18,7 +18,7 @@ set -o xtrace
 # NOTE: Key must be dearmored and imported. <eris 2023-05-25>
 declare -A key
 key[download]=https://download.opensuse.org/repositories/devel:kubic:libcontainers:unstable/Debian_Testing/Release.key
-key[ring]=/usr/share/keyrings/kubic.gpg
+key[ring]=/etc/apt/keyrings/kubic.gpg
 key[fingerprint]=2472D6D0D2F66AF87ABA8DA34D64390375060AA4
 readonly key
 

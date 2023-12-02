@@ -24,7 +24,7 @@ readonly origin='mongodb'
 
 readonly archive_type='deb'
 readonly architecture='amd64'
-readonly signed_by='/usr/share/keyrings/mongodb-server-6.0.gpg'
+readonly signed_by='/etc/apt/keyrings/mongodb-server-6.0.gpg'
 readonly repository_url='https://repo.mongodb.org/apt/debian'
 readonly distribution='bullseye/mongodb-org/6.0'
 readonly component='main'
