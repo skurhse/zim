@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the Azure CLI:
-# 1. Imports the Microsoft signing key 
-# 2. Writes the source list
-# 3. Installs the package 
-# 4. Install extensions
-# <rbt 2023-10-20>
+# REQ: Installs the OpenTofu APT source list, signing key & package. <rbt 2023>
+
+# SEE: https://opentofu.org/docs/intro/install/deb <>
 
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -19,41 +16,30 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-keyring=/usr/share/keyrings/microsoft.gpg
-keyserver=https://packages.microsoft.com/keys/microsoft.asc
-key=BC528686B50D79E339D3721CEB3E94ADBE1229CF
-
-repo=https://packages.microsoft.com/repos/azure-cli/
-component=main
-
-list=/etc/apt/sources.list.d/azure-cli.microsoft.list
-
-package=azure-cli
-extensions=(
-  aks-preview
-  k8s-configuration
-  k8s-extension
-)
-
-sudo gpg --no-default-keyring --keyring "$keyring" \
-  --keyserver "$keyserver" --recv-keys "$key"
-
 arch=$(dpkg --print-architecture)
 
-distro=$(lsb_release --short --codename)
+keyring=/etc/apt/keyrings/opentofu.gpg
+keyserver=https://packagecloud.io/opentofu/tofu/gpgkey
+fingerprint=F4AF70F66EAC4337EEECC97407D3DFCD4C61499F
 
-# PORT: Trixie is not yet supported. <rbt 2023-10-20>
-[[ $distro == trixie ]] && distro=bookworm
+repo=https://packagecloud.io/opentofu/tofu/any/
+distro=any
+component=main
 
 entry="deb [arch=$arch signed-by=$keyring] $repo $distro $component"
+
+list=/etc/apt/sources.list.d/opentofu.list
+
+package=tofu
+
+# NOBUG: HTTP redirects must be pre-resolved or else gnupg errors. <>
+
+realserver=$(curl -Ls -o /dev/null -w %{url_effective} $keyserver)
+
+sudo gpg --no-default-keyring --keyring "$keyring" \
+  --keyserver "$realserver" --recv-keys "$fingerprint"
 
 sudo bash -c "echo ${entry@Q} >${list@Q}"
 
 sudo apt-get update
 sudo apt-get install --yes "$package"
-
-az version
-
-for extension in "${extensions[@]}"; do
-  az extension add --upgrade --name "${extension}" --yes
-done
