@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the OpenTofu APT source list, signing key & package. <rbt 2023>
+# REQ: Installs the OpenTofu source list, signing key & package. <rbt 2023>
 
 # SEE: https://opentofu.org/docs/intro/install/deb <>
 
