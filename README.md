@@ -4,7 +4,7 @@
 
 # 📚 zim
 
-a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie), annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags, licensed under [MPL 2.0](LICENSE)
+a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie), annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags, licensed under [MPL 2.0](LICENSE).
 
 ## features
 `zim` is idempotent
