@@ -42,6 +42,7 @@ a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/Debia
   - opensuse.org
     - [podman](https://docs.podman.io/en/latest/)
 - custom
+  - [kind](https://kind.sigs.k8s.io/)
   - [golang](https://go.dev/doc/)
   - [minikube](https://minikube.sigs.k8s.io/docs/)
 - utils
