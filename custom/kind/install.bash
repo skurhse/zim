@@ -18,4 +18,7 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-go install sigs.k8s.io/kind@latest
+goprog=$(which go)
+
+export GOBIN=/usr/local/bin
+sudo -E "$goprog" install sigs.k8s.io/kind@latest

@@ -14,5 +14,4 @@ set -o nounset
 set -o pipefail
 set -o xtrace
 
-bin=$(go env GOBIN)
-rm "$bin/kind"
+sudo rm -fv /usr/local/bin/kind
