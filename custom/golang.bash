@@ -1,8 +1,6 @@
 #!/usr/bin/env bash
 
-# REQ: Installs a go binary release. <rabbit 2023-11-24>
-
-# CAVEAT: Only supports amd64. <>
+# REQ: Installs a go binary release. <rabbit 2024-06-07>
 
 # SEE: https://go.dev/doc/install <>
 
@@ -19,8 +17,10 @@ set -o pipefail
 set -o xtrace
 
 arch=amd64
-version=1.21.5
-checksum=e2bc0b3e4b64111ec117295c088bde5f00eeed1567999ff77bc859d7df70078e
+version=1.22.4
+
+# SEE: https://go.dev/dl/
+checksum=ba79d4526102575196273416239cca418a651e049c2b099f3159db85e7bade7d
 
 archive="go$version.linux-$arch.tar.gz"
 
