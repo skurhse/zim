@@ -8,7 +8,7 @@ a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/Debia
 
 `zima` is naive, idempotent and reversible.
 
-## software
+## tree
 
 - apt
   - baltocdn.com
