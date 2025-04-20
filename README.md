@@ -4,7 +4,7 @@
 
 # 📚 zima
 
-a bash userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie), annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags, licensed under [MPL 2.0](LICENSE).
+a userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie), written in [Bash 5.2](https://savannah.gnu.org/projects/bash/), annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags, and licensed under [MPL 2.0](LICENSE).
 
 `zima` is naive, idempotent and reversible.
 
