@@ -2,11 +2,11 @@
    - License, v. 2.0. If a copy of the MPL was not distributed with this
    - file, You can obtain one at https://mozilla.org/MPL/2.0/. -->
 
-# 📚 zim
+# 📚 zima
 
 a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie), annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags, licensed under [MPL 2.0](LICENSE).
 
-`zim` is naive, idempotent, & reversible.
+`zima` scripts are naive, idempotent, & reversible.
 
 ## software
 
