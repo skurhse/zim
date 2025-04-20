@@ -6,7 +6,7 @@
 
 a devops userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie), annotated with [PEP 350](https://peps.python.org/pep-0350/) codetags, licensed under [MPL 2.0](LICENSE).
 
-`zima` scripts are naive, idempotent, & reversible.
+`zima` is naive, idempotent & reversible.
 
 ## software
 
