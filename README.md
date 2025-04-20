@@ -8,7 +8,7 @@ a userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie
 
 `zima` is naive, idempotent and reversible.
 
-## layout
+## Project Structure
 
 - apt
   - baltocdn.com
