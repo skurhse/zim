@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
-# installs neovim stable. <skr 2023-01-25>
+# Installs neovim stable. <rbt 2025-04-20>
 
-# see: https://github.com/neovim/neovim/blob/master/INSTALL.md#linux <rbt 2024-10-01>
+# SEE: https://github.com/neovim/neovim/blob/master/INSTALL.md#linux <rbt 2024-10-01>
 
-set +B -Cefuxo pipefail
+set +o braceexpand
+set -o errexit
+set -o noclobber
+set +o noglob
+set -o nounset
+set -o pipefail
+set -o xtrace
 
 repo=neovim/neovim
 tag=stable
