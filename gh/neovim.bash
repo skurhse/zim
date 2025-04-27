@@ -23,7 +23,7 @@ case $arch in
   amd64)
     arch=x86_64
     ;;
-  i386)
+  arm64)
     ;;
   *)
     exit 
