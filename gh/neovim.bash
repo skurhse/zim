@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Installs neovim stable. <rbt 2025-04-20>
+# Installs neovim stable. <rbt 2025-04-26>
 
 # SEE: https://github.com/neovim/neovim/blob/master/INSTALL.md#linux <rbt 2024-10-01>
 
@@ -15,6 +15,8 @@ set -o xtrace
 repo=neovim/neovim
 tag=stable
 name=nvim-linux64
+
+gh --version
 
 cd /tmp
 
