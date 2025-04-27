@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the GitHub CLI. <rbt 2023-10-05>
+# REQ: Installs the GitHub CLI. <rbt 2023-04-26>
 
-# SEE: https://github.com/cli/cli/blob/trunk/docs/install_linux.md <> 
+# SEE: https://github.com/cli/cli/blob/trunk/docs/install_linux.md <>
 
 set +o braceexpand
+
 set -o errexit
 set -o noclobber
 set -o noglob
@@ -23,20 +24,20 @@ readonly url='https://cli.github.com/packages'
 
 readonly entry="deb [arch=$arch signed-by=$keyring] $url $distro $component"
 
-readonly extensions=(
-  'https://github.com/nektos/gh-act'
-)
-
 realpath=$(realpath "${BASH_SOURCE[0]}")
 dirname=$(dirname "$realpath")
 cd "$dirname"
 
-sudo gpg --no-default-keyring \
-  --keyring "$keyring" --keyserver "$keyserver" --recv-keys "$fingerprint"
+sudo gpg \
+  --no-default-keyring --keyring "gnupg-ring:$keyring" \
+  --keyserver "$keyserver" --recv-keys "$fingerprint" 
+
+# NOTE: Must be readable by sandbox user '_apt'. <>
+sudo chmod 444 "$keyring"
 
 sudo bash -c "echo ${entry@Q} > ${file@Q}"
 
 sudo apt-get update
 sudo apt-get install --assume-yes -- gh
 
-gh extension install --force "${extensions[@]}"
+gh --version
