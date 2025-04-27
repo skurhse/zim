@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Installs neovim stable. <rbt 2025-04-26>
+# Installs neovim stable. <rbt 2025-04-27>
 
 # SEE: https://github.com/neovim/neovim/blob/master/INSTALL.md#linux <>
 
@@ -43,7 +43,7 @@ sha256sum --check --ignore-missing shasum.txt
 sudo rm -rf "/opt/nvim-linux-$arch/"
 
 sudo tar \
-  -C /opt/nvim \
+  -C /opt \
   -xzf "nvim-linux-$arch.tar.gz" \
 
 export=(export "PATH=\"\$PATH\":/opt/nvim-linux-$arch/bin")
