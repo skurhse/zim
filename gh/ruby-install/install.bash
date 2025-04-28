@@ -1,62 +1,60 @@
 #!/usr/bin/env bash
 
-# REQ: Installs ruby with ruby-install. <rbt 2025-04-27>
+# REQ: Installs ruby-install. <rbt 2025-04-27>
 
 # SEE: https://github.com/postmodern/ruby-install#install <>
-#
-set +o braceexpand
 
-set -o noglob
-set -o errexit
+set +o braceexpand
+set +o noglob
+
 set -o noclobber
+set -o errexit
 set -o nounset
 set -o pipefail
 set -o xtrace
 
-readonly github_url='https://github.com/postmodern' 
+shopt -s extglob
 
-readonly release_version='0.8.3'
+readonly repo='https://github.com/postmodern/ruby-install'
 
-declare -A key
-key[url]="${github_url/github/raw.github}/postmodern.github.io/master/postmodern.asc"
-key[file]="${key[url]##*/}" 
-key[fingerprint]='0xB9515E77'
+readonly key='repos/postmodern/postmodern.github.io/contents/postmodern.asc'
+readonly keyring='/usr/share/keyrings/postmodern.gpg'
+readonly commit='dfdea932462ad1fa6699c8cbfa326f7263780cff'
+readonly fingerprint='04B2F3EA654140BCC7DA1B5754C3D9E9B9515E77'
 
-declare -A tar
-tar[url]="$github_url/ruby-install/archive/v$release_version.tar.gz"
-tar[file]="ruby-install-$release_version.tar.gz"
+gh --version
+gpg --version
 
-declare -A sig
-sig[url]="${github_url/github/raw.github}/ruby-install/master/pkg/${tar[file]}.asc"
-sig[file]="${sig[url]##*/}"
+rm -rf /tmp/ruby-install
+mkdir /tmp/ruby-install
+cd /tmp/ruby-install
 
-src_dir="${tar[file]%.tar.gz}"
-tmp_dir='/tmp'
+gh release download \
+  --repo "$repo" \
+  --pattern 'ruby-install-*.tar.gz' \
+  --pattern 'ruby-install-*.tar.gz.asc' \
 
-cleanup(){
-  cd "$tmp_dir"
-  rm --recursive --verbose "$src_dir"
-  for e in "${tar[file]}" "${sig[file]}"
-  do
-    rm --verbose "$e"
-  done
-}
-trap cleanup EXIT
+gh api \
+  --header Accept:application/vnd.github.v3.raw \
+  --method GET \
+  --field ref="$commit" \
+-- "$key" > postmodern.asc
 
-cd "$tmp_dir"
+sudo gpg \
+  --import \
+  --no-default-keyring --keyring "$keyring" \
+-- postmodern.asc
 
-for e in 'key' 'tar' 'sig'
-do
-  declare -n ref="$e"
-  wget --output-document "${ref[file]}" "${ref[url]}" 
-done
+gpg \
+  --no-default-keyring --keyring "$keyring" \
+  --fingerprint "$fingerprint"
 
-gpg --import "${key[file]}"
-gpg --fingerprint "${key[fingerprint]}"
-gpg --verify "${sig[file]}" "${tar[file]}"
+tar --extract --ungzip --file ruby-install-*.tar.gz
 
-tar --extract --ungzip --verbose --file "${tar[file]}"
+gpg \
+  --no-default-keyring --keyring "$keyring" \
+  --verify ruby-install-*.tar.gz.asc ruby-install-*.tar.gz
 
-cd "$src_dir"
+cd !(*.tar.gz|*.asc)
+
 sudo make install
-
