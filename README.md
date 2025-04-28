@@ -50,4 +50,4 @@ a userscript library for [Debian 13 Trixie](https://wiki.debian.org/DebianTrixie
     - [openssh](https://www.openssh.com/manual.html)
 
 ## kudos
-In Memoriam [Lucy Wayland](https://aardvarkoffnord.wordpress.com/2016/11/12/diversity-and-inclusion-debian-redux/) & [Ian Murdock](https://www.debian.org/doc/manuals/project-history/manifesto.en.html) 🕊️
+In Memoriam [Lucy Wayland](https://aardvarkoffnord.wordpress.com/2016/11/12/diversity-and-inclusion-debian-redux/) 🕊️
