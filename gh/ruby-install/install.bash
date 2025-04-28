@@ -19,25 +19,23 @@ readonly repo='https://github.com/postmodern/ruby-install'
 
 readonly key='repos/postmodern/postmodern.github.io/contents/postmodern.asc'
 readonly keyring='/usr/share/keyrings/postmodern.gpg'
-readonly commit='dfdea932462ad1fa6699c8cbfa326f7263780cff'
 readonly fingerprint='04B2F3EA654140BCC7DA1B5754C3D9E9B9515E77'
 
 gh --version
 gpg --version
 
-rm -rf /tmp/ruby-install
+rm --recursive --force /tmp/ruby-install
 mkdir /tmp/ruby-install
 cd /tmp/ruby-install
 
 gh release download \
   --repo "$repo" \
   --pattern 'ruby-install-*.tar.gz' \
-  --pattern 'ruby-install-*.tar.gz.asc' \
+  --pattern 'ruby-install-*.tar.gz.asc'
 
 gh api \
   --header Accept:application/vnd.github.v3.raw \
   --method GET \
-  --field ref="$commit" \
 -- "$key" > postmodern.asc
 
 sudo gpg \
@@ -58,3 +56,5 @@ gpg \
 cd !(*.tar.gz|*.asc)
 
 sudo make install
+
+ruby-install --version
