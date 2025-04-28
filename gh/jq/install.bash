@@ -1,13 +1,14 @@
 #!/usr/bin/env bash
 
-# REQ: Installs the latest jq from Github Releases. <rbt 2025-04-20>
+# REQ: Installs jq latest. <rbt 2025-04-27>
 
 # SEE: https://github.com/stedolan/jq <>
 
 set +o braceexpand
+set +o noglob
+
 set -o errexit
 set -o noclobber
-set +o noglob
 set -o nounset
 set -o pipefail
 set -o xtrace
@@ -19,6 +20,7 @@ readonly pattern="*.tar.gz"
 
 gh --version
 make --version
+gcc --version
 
 cd /tmp
 rm -rf jq/
@@ -32,5 +34,7 @@ cd !($pattern)
 ./configure
 make
 sudo make install
+
+sudo mv jq /usr/local/bin/
 
 jq --version
