@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# REQ: Installs ruby-install. <rbt 2025-04-27>
+# REQ: Installs ruby-install. <rbt 2025-04-28>
 
 # SEE: https://github.com/postmodern/ruby-install#install <>
 
@@ -15,18 +15,22 @@ set -o xtrace
 
 shopt -s extglob
 
+readonly keyring='/usr/share/keyrings/postmodern.gpg'
+
+readonly tmp='/tmp/ruby-install'
+readonly src='/usr/local/src/ruby-install'
+
 readonly repo='https://github.com/postmodern/ruby-install'
 
 readonly key='repos/postmodern/postmodern.github.io/contents/postmodern.asc'
-readonly keyring='/usr/share/keyrings/postmodern.gpg'
 readonly fingerprint='04B2F3EA654140BCC7DA1B5754C3D9E9B9515E77'
 
 gh --version
 gpg --version
 
-rm --recursive --force /tmp/ruby-install
-mkdir /tmp/ruby-install
-cd /tmp/ruby-install
+rm --recursive --force "$tmp"
+mkdir "$tmp"
+cd "$tmp"
 
 gh release download \
   --repo "$repo" \
@@ -53,7 +57,8 @@ gpg \
   --no-default-keyring --keyring "$keyring" \
   --verify ruby-install-*.tar.gz.asc ruby-install-*.tar.gz
 
-cd !(*.tar.gz|*.asc)
+sudo cp -r !(*.tar.gz|*.asc) "$src"
+cd "$src"
 
 sudo make install
 
