@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 
-# Installs neovim stable. <rbt 2025-04-27>
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+# REQ: Installs neovim stable. <rbt 2025-04-28>
 
 # SEE: https://github.com/neovim/neovim/blob/master/INSTALL.md#linux <>
 
